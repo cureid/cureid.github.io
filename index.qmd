@@ -1,5 +1,5 @@
 ---
-title: "C-PATH / JH guide to getting started with OMOP for CURE ID"
+title: "Guide to getting started with OMOP for CURE ID"
 bibliography: references.bib
 ---
 
@@ -169,7 +169,7 @@ b.       The concept ids here represent LOINC or SNOMED codes for standard
 
 **Dependencies**: None
 
-**Customization**: By default this script will create tables in a schema titled "deident," however this can be set to whatever value you desire.
+**Customization**: By default this script will create tables in the Results schema, and will preface the table names with "deident," however this can be set to whatever value you desire.
 
 **Steps**:
 
@@ -346,7 +346,7 @@ For the tables of the main domains of the CDM it is imperative that concepts use
 Variable names across all tables follow one convention:
 
 |                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|------------|------------------------------------------------------------|
 | **Notation**        | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | \_SOURCE_VALUE      | Verbatim information from the source data, typically used in ETL to map to CONCEPT_ID, and not to be used by any standard analytics. For example, CONDITION_SOURCE_VALUE = '787.02' was the ICD-9 code captured as a diagnosis from the administrative claim.                                                                                                                                                                                     |
 | \_ID                | Unique identifiers for key entities, which can serve as foreign keys to establish relationships across entities. For example, PERSON_ID uniquely identifies each individual. VISIT_OCCURRENCE_ID uniquely identifies a PERSON encounter at a point of care.                                                                                                                                                                                       |
@@ -512,4 +512,4 @@ Data Quality Dos and Don'ts
 
 [Synthea](https://github.com/OHDSI/ETL-Synthea) GitHub site with files to use the synthetic patient generator Synthea
 
-[Eunomia](https://ohdsi.github.io/Eunomia/) LInk to the Eunomia GitHub.io site with instructions and standard dataset files
+[Eunomia](https://ohdsi.github.io/Eunomia/) Link to the Eunomia GitHub.io site with instructions and standard dataset files

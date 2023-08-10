@@ -1,5 +1,5 @@
 ---
-title: "Guide to getting started with OMOP for CURE ID"
+title: "C-PATH / JH guide to getting started with OMOP for CURE ID"
 bibliography: references.bib
 ---
 
@@ -46,6 +46,78 @@ The code for the CURE ID project is hosted on [GitHub](https://github.com/). Git
 15. JHU/C-Path technical team reviews CSV files before transfer
 16. Any caveats in the data documented in Data Export Cover Sheet
 17. Data transfer arrangements made by contacting Smitty Heavner
+
+## OMOP Extract, Transform, and Load Guide
+
+### [OHDSI ETL Resources]{.underline}
+
+-   [OHDSI Wiki: ETL Creation Best Practices](https://www.ohdsi.org/web/wiki/doku.php?id=documentation:etl_best_practices)
+-   [Book of OHDSI (Ch. 6): Extract Transform Load](Book%20of%20OHDSI%20-%20Ch.6%20Extract%20Transform%20Load)
+-   [EHDEN Academy: OMOP CDM and Standardised Vocabularies](https://academy.ehden.eu/enrol/index.php?id=4)
+-   [EHDEN Academy: Extract, Transform and Load](https://academy.ehden.eu/course/view.php?id=7)
+-   [EHDEN Academy: Introduction to Usagi & Code Mappings for an ETL](https://academy.ehden.eu/enrol/index.php?id=18)
+
+### [OHDSI ETL Steps]{.underline}
+
+1.  **Find your people.**
+
+    a.  Assemble ETL team: both data experts, medical experts, CDM/vocabulary experts
+    b.  Assign persons with medical knowledge to create code mappings
+    c.  Assign persons with technical knowledge to implement the ETL
+    d.  Schedule regular meetings for quality control maintenance
+
+2.  **Understand your data.**
+
+    a.  Take inventory of source data (tools: [White Rabbit](https://github.com/OHDSI/WhiteRabbit))
+        i.  List of tables in database
+        ii. List fields in each table
+        iii. List distinct values of each field
+        iv. Summarize the frequency of each value of each field.
+    b.  Define relationships between source data tables and fields (tools: [Rabbit-in-a-Hat](https://github.com/OHDSI/WhiteRabbit))
+        i.  Record both relationship definition decisions and reasoning behind these decisions
+    c.  Determine standardized vocabularies that already exist in your source data (ICD-10, CPT, HCPCS, LOINC, etc.)
+        i.  Many commonly used standardized coding systems have already been mapped to the OMOP vocabulary -- utilize the work done by others across the OHDSI community to accelerate the process of mapping your data systems to OMOP.
+    d.  Determine the coding systems in your source data that are proprietary or not already mapped to OMOP (proprietary patient/visit identifiers, account numbers, charge codes, etc.)
+
+3.  **Map your codes to OMOP concepts.**
+
+    a.  Summarize the frequency of each code from your source data code sets that will require mapping to OMOP concepts.
+    b.  Create your source data to OMOP mapping. (tools: [Usagi](https://github.com/OHDSI/Usagi))
+        i.  Assign this task to the ETL team members with appropriate medical knowledge to discern which codes are most synonymous based on their descriptions. Medical knowledge is key for this step as semantic understanding of clinical descriptions is required to make decisions on mapping source data concepts to OMOP concepts.
+        ii. Start with the most frequently used codes and determine your threshold of code frequency to include in the mapping.
+        iii. Focus on a particular project or clinical domain to limit the scope of data needed for capture and conversion to OMOP.
+        iv. Utilize the Usagi tool for mapping suggestions and searching based on similarity of code descriptions.
+
+4.  **OMOPify your data!**
+
+    a.  Determine the technology and software used or approved at your site for data storage, querying, and transfer. Determine the tools and technologies that team members and internal staff have expertise in.
+    b.  Generate the OMOP DDLs
+        i.  Using R: https://github.com/OHDSI/CommonDataModel
+        ii. Using SQL: https://github.com/OHDSI/CommonDataModel/tree/v5.4.0/inst/ddl/5.4
+    c.  Implement the ETL.
+        i.  Assign this task to the ETL team members with technical knowledge and permission for accessing and extracting source data and writing to a database.
+        ii. Many tools and technologies can be used for this step. Utilize the existing tools, technologies, and expertise of your ETL team and internal staff.
+
+5.  **Evaluate your data.**
+
+    a.  Involve everyone in the evaluation and maintenance of ETL and data quality.
+    b.  Review the ETL design documentation, computer code used in implementation, and concept mappings
+    c.  Perform a manual audit using a sample of patients from both source data and derived OMOP data
+    d.  Compare summary level counts of key fields between source data and OMOP derived data. (tools: Achilles)
+
+**★ Ask for help along the way!**
+
+The CURE ID support team is here to help you. We also encourage you to connect with the OHDSI community to find others with experience, expertise, and guidance for each step of your ETL to OMOP journey. The open, collaborative community of OHDSI is the most powerful tool at your disposal. Use it (us)!
+
+### [Places to Connect]{.underline}
+
+-   OHDSI.org: https://www.ohdsi.org/
+
+-   OHDSI Wiki: https://www.ohdsi.org/web/wiki/doku.php
+
+-   OHDSI Forums: https://forums.ohdsi.org/
+
+-   OHDSI Workgroups: https://www.ohdsi.org/workgroups/
 
 ## OMOP Cohort Creation and De-identification Guide
 
@@ -169,7 +241,7 @@ b.       The concept ids here represent LOINC or SNOMED codes for standard
 
 **Dependencies**: None
 
-**Customization**: By default this script will create tables in the Results schema, and will preface the table names with "deident," however this can be set to whatever value you desire.
+**Customization**: By default this script will create tables in a schema titled "deident," however this can be set to whatever value you desire.
 
 **Steps**:
 
@@ -346,7 +418,7 @@ For the tables of the main domains of the CDM it is imperative that concepts use
 Variable names across all tables follow one convention:
 
 |                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|----------------------|--------------------------------------------------|
 | **Notation**        | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | \_SOURCE_VALUE      | Verbatim information from the source data, typically used in ETL to map to CONCEPT_ID, and not to be used by any standard analytics. For example, CONDITION_SOURCE_VALUE = '787.02' was the ICD-9 code captured as a diagnosis from the administrative claim.                                                                                                                                                                                     |
 | \_ID                | Unique identifiers for key entities, which can serve as foreign keys to establish relationships across entities. For example, PERSON_ID uniquely identifies each individual. VISIT_OCCURRENCE_ID uniquely identifies a PERSON encounter at a point of care.                                                                                                                                                                                       |
@@ -361,6 +433,18 @@ For more information, see:
 [How to Calculate Drug Dose](https://ohdsi.github.io/CommonDataModel/drug_dose.html) 
 
 [Clinical Data Tables](https://ohdsi.github.io/CommonDataModel/cdm53.html#Clinical_Data_Tables) 
+
+# Cure ID Concept Mapping Support
+
+![](images/CureID_Concept_Mapping_Process.png)
+
+#### Collaborative OMOP Concept Mapping Process
+
+1.  CureID clinical informaticists work with each site to manually map internal concepts to OMOP concepts outlined for capture in the project plan.
+
+2.  The combined concepts from all sites are maintained as a single, updated concept set using the OHDSI ATLAS open-source tool.
+
+3.  All concepts currently identified by the work between CureID staff and each site, and all corresponding descendant concepts are exported from ATLAS as .json or .csv files for use in cohort creation, profiling, and clinical registry submission.
 
 # Identifying Oxygen Devices in Epic/Clarity
 
@@ -428,6 +512,10 @@ In tandem with Perseus, OHDSI HADES and OHDSI ATLAS are the two projects within 
 
 <https://github.com/OHDSI/WebAPI>
 
+#### Broadsea
+
+<https://www.youtube.com/watch?v=a9ZJURNRbUg>
+
 #### Data Analysis
 
 <https://github.com/OHDSI/Achilles>
@@ -472,6 +560,14 @@ Data Quality Dos and Don'ts
 
 [RUMC OMOP transition scripts from Clarity, Caboodle](https://userweb.epic.com/User/788dbdff-6712-4b16-aabc-98cdb1be4ff9): Code created by Rush University Medical Center
 
+# Using synthetic data
+
+[MIMIC-IV](https://physionet.org/content/mimic-iv-demo-omop/0.9/1_omop_data_csv/#files-panel) 100-patient demo dataset based on MIMIC to create a OMOP instance
+
+[Synthea](https://github.com/OHDSI/ETL-Synthea) GitHub site with files to use the synthetic patient generator Synthea
+
+[Eunomia](https://ohdsi.github.io/Eunomia/) LInk to the Eunomia GitHub.io site with instructions and standard dataset files
+
 # Useful Resources
 
 [Web site for the OHDSI community](https://www.ohdsi.org/): http://www.ohdsi.org
@@ -506,10 +602,4 @@ Data Quality Dos and Don'ts
 
 [How to develop capacity for observational research within a health system](https://www.ohdsi.org/2022showcase-79/) Presentation on building capacity from 2022 OHDSI Collaborator Showcase
 
-# Using synthetic data
-
-[MIMIC-IV](https://physionet.org/content/mimic-iv-demo-omop/0.9/1_omop_data_csv/#files-panel) 100-patient demo dataset based on MIMIC to create a OMOP instance
-
-[Synthea](https://github.com/OHDSI/ETL-Synthea) GitHub site with files to use the synthetic patient generator Synthea
-
-[Eunomia](https://ohdsi.github.io/Eunomia/) Link to the Eunomia GitHub.io site with instructions and standard dataset files
+# 

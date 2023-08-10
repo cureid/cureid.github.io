@@ -1,13 +1,13 @@
 project:
   type: website
-output-dir: "."
-website:https://github.com/willgarneau/CUREID
-  title: 
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+  output-dir: docs
+  title: "Guide to getting started with OMOP for CURE ID"
+navbar:
+  left:
+    - href: index.qmd
+      text: Home
+    - href: about.qmd
+      text: About
 
 format:
   html:
@@ -16,4 +16,3 @@ format:
     toc: true
 
 editor: visual
-

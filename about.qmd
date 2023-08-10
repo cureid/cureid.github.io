@@ -38,4 +38,4 @@ Cure ID Collaborators  
 
 |                                                                               |                                                       |
 |-------------------------------------------------------------------------------|-------------------------------------------------------|
-| ![](images/medicine.logo.horizontal.blue.png){fig-align="center" width="364"} | ![](images/cpath.png){fig-align="center" width="311"} |
+|  |  |

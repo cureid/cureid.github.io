@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CURE ID - Guide to getting started with OMOP for CURE ID</title>
+<title>CURE ID - C-PATH / JH guide to getting started with OMOP for CURE ID</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -109,8 +109,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting started</a></li>
   <li><a href="#cure-id-technical-support-checklist" id="toc-cure-id-technical-support-checklist" class="nav-link" data-scroll-target="#cure-id-technical-support-checklist">CURE ID technical support checklist</a></li>
+  <li><a href="#omop-extract-transform-and-load-guide" id="toc-omop-extract-transform-and-load-guide" class="nav-link" data-scroll-target="#omop-extract-transform-and-load-guide">OMOP Extract, Transform, and Load Guide</a></li>
   <li><a href="#omop-cohort-creation-and-de-identification-guide" id="toc-omop-cohort-creation-and-de-identification-guide" class="nav-link" data-scroll-target="#omop-cohort-creation-and-de-identification-guide">OMOP Cohort Creation and De-identification Guide</a></li>
   <li><a href="#omop-table-and-field-basics" id="toc-omop-table-and-field-basics" class="nav-link" data-scroll-target="#omop-table-and-field-basics">OMOP Table and Field Basics</a></li>
+  <li><a href="#cure-id-concept-mapping-support" id="toc-cure-id-concept-mapping-support" class="nav-link" data-scroll-target="#cure-id-concept-mapping-support">Cure ID Concept Mapping Support</a></li>
   <li><a href="#identifying-oxygen-devices-in-epicclarity" id="toc-identifying-oxygen-devices-in-epicclarity" class="nav-link" data-scroll-target="#identifying-oxygen-devices-in-epicclarity">Identifying Oxygen Devices in Epic/Clarity</a></li>
   <li><a href="#edge-tool-suite" id="toc-edge-tool-suite" class="nav-link" data-scroll-target="#edge-tool-suite">Edge Tool Suite</a></li>
   <li><a href="#understanding-perseus" id="toc-understanding-perseus" class="nav-link" data-scroll-target="#understanding-perseus">Understanding Perseus</a></li>
@@ -118,8 +120,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#manuscripts" id="toc-manuscripts" class="nav-link" data-scroll-target="#manuscripts">Manuscripts</a></li>
   <li><a href="#webinars" id="toc-webinars" class="nav-link" data-scroll-target="#webinars">Webinars</a></li>
   <li><a href="#omop-scripts-for-epic" id="toc-omop-scripts-for-epic" class="nav-link" data-scroll-target="#omop-scripts-for-epic">OMOP Scripts for Epic</a></li>
-  <li><a href="#useful-resources" id="toc-useful-resources" class="nav-link" data-scroll-target="#useful-resources">Useful Resources</a></li>
   <li><a href="#using-synthetic-data" id="toc-using-synthetic-data" class="nav-link" data-scroll-target="#using-synthetic-data">Using synthetic data</a></li>
+  <li><a href="#useful-resources" id="toc-useful-resources" class="nav-link" data-scroll-target="#useful-resources">Useful Resources</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
   </ul>
 </nav>
     </div>
@@ -128,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Guide to getting started with OMOP for CURE ID</h1>
+<h1 class="title">C-PATH / JH guide to getting started with OMOP for CURE ID</h1>
 </div>
 
 
@@ -189,6 +192,87 @@ ul.task-list li input[type="checkbox"] {
 <li>Any caveats in the data documented in Data Export Cover Sheet</li>
 <li>Data transfer arrangements made by contacting Smitty Heavner</li>
 </ol>
+</section>
+<section id="omop-extract-transform-and-load-guide" class="level2">
+<h2 class="anchored" data-anchor-id="omop-extract-transform-and-load-guide">OMOP Extract, Transform, and Load Guide</h2>
+<p><u>OHDSI ETL Resources:</u></p>
+<p><a href="https://www.ohdsi.org/web/wiki/doku.php?id=documentation:etl_best_practices">OHDSI Wiki: ETL Creation Best Practices</a></p>
+<p><a href="Book of OHDSI - Ch.6 Extract Transform Load">Book of OHDSI (Ch. 6): Extract Transform Load</a></p>
+<p><a href="https://academy.ehden.eu/enrol/index.php?id=4">EHDEN Academy: OMOP CDM and Standardised Vocabularies</a></p>
+<p><a href="https://academy.ehden.eu/course/view.php?id=7">EHDEN Academy: Extract, Transform and Load</a></p>
+<p><a href="https://academy.ehden.eu/enrol/index.php?id=18">EHDEN Academy: Introduction to Usagi &amp; Code Mappings for an ETL</a></p>
+<p>OHDSI ETL Steps:</p>
+<ol type="1">
+<li>Find your people.</li>
+</ol>
+<ol type="a">
+<li><p>Assemble ETL team: both data experts, medical experts, CDM/vocabulary experts</p></li>
+<li><p>Assign persons with medical knowledge to create code mappings</p></li>
+<li><p>Assign persons with technical knowledge to implement the ETL</p></li>
+<li><p>Schedule regular meetings for quality control maintenance</p></li>
+</ol>
+<ol start="2" type="1">
+<li>Understand your data.</li>
+</ol>
+<ol type="a">
+<li><p>Take inventory of source data (tools: White Rabbit)</p></li>
+<li><p>List of tables in database</p></li>
+</ol>
+<ol start="2" type="i">
+<li><p>List fields in each table</p></li>
+<li><p>List distinct values of each field</p></li>
+<li><p>Summarize the frequency of each value of each field.</p></li>
+</ol>
+<ol start="2" type="a">
+<li><p>Define relationships between source data tables and fields (tools: Rabbit-in-a-Hat)</p></li>
+<li><p>Record both relationship definition decisions and reasoning behind these decisions</p></li>
+<li><p>Determine standardized vocabularies that already exist in your source data (ICD-10, CPT, HCPCS, LOINC, etc.)</p></li>
+<li><p>Many commonly used standardized coding systems have already been mapped to the OMOP vocabulary – utilize the work done by others across the OHDSI community to accelerate the process of mapping your data systems to OMOP.</p></li>
+<li><p>Determine the coding systems in your source data that are proprietary or not already mapped to OMOP (proprietary patient/visit identifiers, account numbers, charge codes, etc.)</p></li>
+</ol>
+<ol start="3" type="1">
+<li>Map your codes to OMOP concepts.</li>
+</ol>
+<ol type="a">
+<li><p>Summarize the frequency of each code from your source data code sets that will require mapping to OMOP concepts.</p></li>
+<li><p>Create your source data to OMOP mapping. (tools: Usagi)</p></li>
+<li><p>Assign this task to the ETL team members with appropriate medical knowledge to discern which codes are most synonymous based on their descriptions. Medical knowledge is key for this step as semantic understanding of clinical descriptions is required to make decisions on mapping source data concepts to OMOP concepts.</p></li>
+</ol>
+<ol start="2" type="i">
+<li><p>Start with the most frequently used codes and determine your threshold of code frequency to include in the mapping.</p></li>
+<li><p>Focus on a particular project or clinical domain to limit the scope of data needed for capture and conversion to OMOP.</p></li>
+<li><p>Utilize the Usagi tool for mapping suggestions and searching based on similarity of code descriptions.</p></li>
+</ol>
+<ol start="4" type="1">
+<li>OMOPify your data!</li>
+</ol>
+<ol type="a">
+<li><p>Determine the technology and software used or approved at your site for data storage, querying, and transfer. Determine the tools and technologies that team members and internal staff have expertise in.</p></li>
+<li><p>Generate the OMOP DDLs</p></li>
+<li><p>Using R: https://github.com/OHDSI/CommonDataModel</p></li>
+</ol>
+<ol start="2" type="i">
+<li><p>Using SQL: https://github.com/OHDSI/CommonDataModel/tree/v5.4.0/inst/ddl/5.4</p></li>
+<li><p>Implement the ETL.</p></li>
+<li><p>Assign this task to the ETL team members with technical knowledge and permission for accessing and extracting source data and writing to a database.</p></li>
+<li><p>Many tools and technologies can be used for this step. Utilize the existing tools, technologies, and expertise of your ETL team and internal staff.</p></li>
+</ol>
+<ol start="5" type="1">
+<li>Evaluate your data.</li>
+</ol>
+<ol type="a">
+<li><p>Involve everyone in the evaluation and maintenance of ETL and data quality.</p></li>
+<li><p>Review the ETL design documentation, computer code used in implementation, and concept mappings</p></li>
+<li><p>Perform a manual audit using a sample of patients from both source data and derived OMOP data</p></li>
+<li><p>Compare summary level counts of key fields between source data and OMOP derived data. (tools: Achilles)</p></li>
+</ol>
+<p>★ Ask for help along the way!</p>
+<p>Reach out to the OHDSI community to find others with experience, expertise, and guidance for each step of your ETL to OMOP journey. The open, collaborative community of OHDSI is the most powerful tool at your disposal. Use it (us)!</p>
+<p>Places to connect:</p>
+<p>• OHDSI.org: https://www.ohdsi.org/</p>
+<p>• OHDSI Wiki: https://www.ohdsi.org/web/wiki/doku.php</p>
+<p>• OHDSI Forums: https://forums.ohdsi.org/</p>
+<p>• OHDSI Workgroups: https://www.ohdsi.org/workgroups/</p>
 </section>
 <section id="omop-cohort-creation-and-de-identification-guide" class="level2">
 <h2 class="anchored" data-anchor-id="omop-cohort-creation-and-de-identification-guide">OMOP Cohort Creation and De-identification Guide</h2>
@@ -262,7 +346,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Filename</strong>: <a href="https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/04_DE_ID_CDM_Table_ddl.sql">04_DE_ID_CDM_Table_ddl.sql</a></p>
 <p><strong>Purpose</strong>: Generate the necessary tables for the de-identified version of the CURE ID Cohort</p>
 <p><strong>Dependencies</strong>: None</p>
-<p><strong>Customization</strong>: By default this script will create tables in the Results schema, and will preface the table names with “deident,” however this can be set to whatever value you desire.</p>
+<p><strong>Customization</strong>: By default this script will create tables in a schema titled “deident,” however this can be set to whatever value you desire.</p>
 <p><strong>Steps</strong>:</p>
 <p>1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Create the Person table</p>
 <p>2)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Create the Death table</p>
@@ -396,6 +480,18 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="https://ohdsi.github.io/CommonDataModel/cdm53.html#Clinical_Data_Tables">Clinical Data Tables</a>&nbsp;</p>
 </section>
 </section>
+<section id="cure-id-concept-mapping-support" class="level1">
+<h1>Cure ID Concept Mapping Support</h1>
+<p><img src="images/CureID_Concept_Mapping_Process.png" class="img-fluid"></p>
+<section id="collaborative-omop-concept-mapping-process" class="level4">
+<h4 class="anchored" data-anchor-id="collaborative-omop-concept-mapping-process">Collaborative OMOP Concept Mapping Process</h4>
+<ol type="1">
+<li><p>CureID clinical informaticists work with each site to manually map internal concepts to OMOP concepts outlined for capture in the project plan.</p></li>
+<li><p>The combined concepts from all sites are maintained as a single, updated concept set using the OHDSI ATLAS open-source tool.</p></li>
+<li><p>All concepts currently identified by the work between CureID staff and each site, and all corresponding descendant concepts are exported from ATLAS as .json or .csv files for use in cohort creation, profiling, and clinical registry submission.</p></li>
+</ol>
+</section>
+</section>
 <section id="identifying-oxygen-devices-in-epicclarity" class="level1">
 <h1>Identifying Oxygen Devices in Epic/Clarity</h1>
 <p><a href="https://userweb.epic.com/Thread/118440/Identifying-Oxygen-Devices-Flowsheet-Measures-to-Map-to-OMOP/">Identifying Oxygen Devices Flowsheet Measures to Map to OMOP Concepts</a></p>
@@ -452,6 +548,10 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="https://github.com/OHDSI/Atlas" class="uri">https://github.com/OHDSI/Atlas</a></p>
 <p><a href="https://github.com/OHDSI/WebAPI" class="uri">https://github.com/OHDSI/WebAPI</a></p>
 </section>
+<section id="broadsea" class="level4">
+<h4 class="anchored" data-anchor-id="broadsea">Broadsea</h4>
+<p><a href="https://www.youtube.com/watch?v=a9ZJURNRbUg" class="uri">https://www.youtube.com/watch?v=a9ZJURNRbUg</a></p>
+</section>
 <section id="data-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="data-analysis">Data Analysis</h4>
 <p><a href="https://github.com/OHDSI/Achilles" class="uri">https://github.com/OHDSI/Achilles</a></p>
@@ -489,6 +589,12 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="https://userweb.epic.com/User/788dbdff-6712-4b16-aabc-98cdb1be4ff9">“The Spectrum Code”</a>: scripts and documentation created by Roger Carlson at Corewell Health</p>
 <p><a href="https://userweb.epic.com/User/788dbdff-6712-4b16-aabc-98cdb1be4ff9">RUMC OMOP transition scripts from Clarity, Caboodle</a>: Code created by Rush University Medical Center</p>
 </section>
+<section id="using-synthetic-data" class="level1">
+<h1>Using synthetic data</h1>
+<p><a href="https://physionet.org/content/mimic-iv-demo-omop/0.9/1_omop_data_csv/#files-panel">MIMIC-IV</a> 100-patient demo dataset based on MIMIC to create a OMOP instance</p>
+<p><a href="https://github.com/OHDSI/ETL-Synthea">Synthea</a> GitHub site with files to use the synthetic patient generator Synthea</p>
+<p><a href="https://ohdsi.github.io/Eunomia/">Eunomia</a> LInk to the Eunomia GitHub.io site with instructions and standard dataset files</p>
+</section>
 <section id="useful-resources" class="level1">
 <h1>Useful Resources</h1>
 <p><a href="https://www.ohdsi.org/">Web site for the OHDSI community</a>: http://www.ohdsi.org</p>
@@ -508,11 +614,8 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="https://github.com/OHDSI/Perseus">OHDSI/Perseus GitHub site</a> OHDSI/Perseus on GitHub</p>
 <p><a href="https://www.ohdsi.org/2022showcase-79/">How to develop capacity for observational research within a health system</a> Presentation on building capacity from 2022 OHDSI Collaborator Showcase</p>
 </section>
-<section id="using-synthetic-data" class="level1">
-<h1>Using synthetic data</h1>
-<p><a href="https://physionet.org/content/mimic-iv-demo-omop/0.9/1_omop_data_csv/#files-panel">MIMIC-IV</a> 100-patient demo dataset based on MIMIC to create a OMOP instance</p>
-<p><a href="https://github.com/OHDSI/ETL-Synthea">Synthea</a> GitHub site with files to use the synthetic patient generator Synthea</p>
-<p><a href="https://ohdsi.github.io/Eunomia/">Eunomia</a> Link to the Eunomia GitHub.io site with instructions and standard dataset files</p>
+<section id="section" class="level1">
+<h1></h1>
 
 
 </section>

@@ -1,13 +1,14 @@
 project:
   type: website
   output-dir: docs
-  title: "Guide to getting started with OMOP for CURE ID"
-navbar:
-  left:
-    - href: index.qmd
-      text: Home
-    - href: about.qmd
-      text: About
+website:
+  title: "CURE ID"
+  navbar:
+    left:
+      - href: "index.qmd"
+        text: "Home"
+      - href: "about.qmd"
+        text: "About"
 
 format:
   html:

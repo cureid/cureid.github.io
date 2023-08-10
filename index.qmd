@@ -68,12 +68,12 @@ The code for the CURE ID project is hosted on [GitHub](https://github.com/). Git
 
 2.  **Understand your data.**
 
-    a.  Take inventory of source data (tools: White Rabbit)
+    a.  Take inventory of source data (tools: [White Rabbit](https://github.com/OHDSI/WhiteRabbit))
         i.  List of tables in database
         ii. List fields in each table
         iii. List distinct values of each field
         iv. Summarize the frequency of each value of each field.
-    b.  Define relationships between source data tables and fields (tools: Rabbit-in-a-Hat)
+    b.  Define relationships between source data tables and fields (tools: [Rabbit-in-a-Hat](https://github.com/OHDSI/WhiteRabbit))
         i.  Record both relationship definition decisions and reasoning behind these decisions
     c.  Determine standardized vocabularies that already exist in your source data (ICD-10, CPT, HCPCS, LOINC, etc.)
         i.  Many commonly used standardized coding systems have already been mapped to the OMOP vocabulary -- utilize the work done by others across the OHDSI community to accelerate the process of mapping your data systems to OMOP.
@@ -82,7 +82,7 @@ The code for the CURE ID project is hosted on [GitHub](https://github.com/). Git
 3.  **Map your codes to OMOP concepts.**
 
     a.  Summarize the frequency of each code from your source data code sets that will require mapping to OMOP concepts.
-    b.  Create your source data to OMOP mapping. (tools: Usagi)
+    b.  Create your source data to OMOP mapping. (tools: [Usagi](https://github.com/OHDSI/Usagi))
         i.  Assign this task to the ETL team members with appropriate medical knowledge to discern which codes are most synonymous based on their descriptions. Medical knowledge is key for this step as semantic understanding of clinical descriptions is required to make decisions on mapping source data concepts to OMOP concepts.
         ii. Start with the most frequently used codes and determine your threshold of code frequency to include in the mapping.
         iii. Focus on a particular project or clinical domain to limit the scope of data needed for capture and conversion to OMOP.

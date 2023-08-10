@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CURE ID - C-PATH / JH guide to getting started with OMOP for CURE ID</title>
+<title>Guide to getting started with OMOP for CURE ID</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,7 +24,6 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
@@ -40,11 +39,11 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 20,
   "language": {
     "search-no-results-text": "No results",
@@ -64,40 +63,11 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">CURE ID</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
- <span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
- <span class="menu-text">About</span></a>
-  </li>  
-</ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
-          </div> <!-- /navcollapse -->
-      </div> <!-- /container-fluid -->
-    </nav>
-</header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -118,9 +88,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#manuscripts" id="toc-manuscripts" class="nav-link" data-scroll-target="#manuscripts">Manuscripts</a></li>
   <li><a href="#webinars" id="toc-webinars" class="nav-link" data-scroll-target="#webinars">Webinars</a></li>
   <li><a href="#omop-scripts-for-epic" id="toc-omop-scripts-for-epic" class="nav-link" data-scroll-target="#omop-scripts-for-epic">OMOP Scripts for Epic</a></li>
-  <li><a href="#using-synthetic-data" id="toc-using-synthetic-data" class="nav-link" data-scroll-target="#using-synthetic-data">Using synthetic data</a></li>
   <li><a href="#useful-resources" id="toc-useful-resources" class="nav-link" data-scroll-target="#useful-resources">Useful Resources</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#using-synthetic-data" id="toc-using-synthetic-data" class="nav-link" data-scroll-target="#using-synthetic-data">Using synthetic data</a></li>
   </ul>
 </nav>
     </div>
@@ -129,7 +98,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">C-PATH / JH guide to getting started with OMOP for CURE ID</h1>
+<h1 class="title">Guide to getting started with OMOP for CURE ID</h1>
 </div>
 
 
@@ -263,7 +232,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Filename</strong>: <a href="https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/04_DE_ID_CDM_Table_ddl.sql">04_DE_ID_CDM_Table_ddl.sql</a></p>
 <p><strong>Purpose</strong>: Generate the necessary tables for the de-identified version of the CURE ID Cohort</p>
 <p><strong>Dependencies</strong>: None</p>
-<p><strong>Customization</strong>: By default this script will create tables in a schema titled “deident,” however this can be set to whatever value you desire.</p>
+<p><strong>Customization</strong>: By default this script will create tables in the Results schema, and will preface the table names with “deident,” however this can be set to whatever value you desire.</p>
 <p><strong>Steps</strong>:</p>
 <p>1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Create the Person table</p>
 <p>2)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Create the Death table</p>
@@ -453,10 +422,6 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="https://github.com/OHDSI/Atlas" class="uri">https://github.com/OHDSI/Atlas</a></p>
 <p><a href="https://github.com/OHDSI/WebAPI" class="uri">https://github.com/OHDSI/WebAPI</a></p>
 </section>
-<section id="broadsea" class="level4">
-<h4 class="anchored" data-anchor-id="broadsea">Broadsea</h4>
-<p><a href="https://www.youtube.com/watch?v=a9ZJURNRbUg" class="uri">https://www.youtube.com/watch?v=a9ZJURNRbUg</a></p>
-</section>
 <section id="data-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="data-analysis">Data Analysis</h4>
 <p><a href="https://github.com/OHDSI/Achilles" class="uri">https://github.com/OHDSI/Achilles</a></p>
@@ -494,12 +459,6 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="https://userweb.epic.com/User/788dbdff-6712-4b16-aabc-98cdb1be4ff9">“The Spectrum Code”</a>: scripts and documentation created by Roger Carlson at Corewell Health</p>
 <p><a href="https://userweb.epic.com/User/788dbdff-6712-4b16-aabc-98cdb1be4ff9">RUMC OMOP transition scripts from Clarity, Caboodle</a>: Code created by Rush University Medical Center</p>
 </section>
-<section id="using-synthetic-data" class="level1">
-<h1>Using synthetic data</h1>
-<p><a href="https://physionet.org/content/mimic-iv-demo-omop/0.9/1_omop_data_csv/#files-panel">MIMIC-IV</a> 100-patient demo dataset based on MIMIC to create a OMOP instance</p>
-<p><a href="https://github.com/OHDSI/ETL-Synthea">Synthea</a> GitHub site with files to use the synthetic patient generator Synthea</p>
-<p><a href="https://ohdsi.github.io/Eunomia/">Eunomia</a> LInk to the Eunomia GitHub.io site with instructions and standard dataset files</p>
-</section>
 <section id="useful-resources" class="level1">
 <h1>Useful Resources</h1>
 <p><a href="https://www.ohdsi.org/">Web site for the OHDSI community</a>: http://www.ohdsi.org</p>
@@ -519,8 +478,11 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="https://github.com/OHDSI/Perseus">OHDSI/Perseus GitHub site</a> OHDSI/Perseus on GitHub</p>
 <p><a href="https://www.ohdsi.org/2022showcase-79/">How to develop capacity for observational research within a health system</a> Presentation on building capacity from 2022 OHDSI Collaborator Showcase</p>
 </section>
-<section id="section" class="level1">
-<h1></h1>
+<section id="using-synthetic-data" class="level1">
+<h1>Using synthetic data</h1>
+<p><a href="https://physionet.org/content/mimic-iv-demo-omop/0.9/1_omop_data_csv/#files-panel">MIMIC-IV</a> 100-patient demo dataset based on MIMIC to create a OMOP instance</p>
+<p><a href="https://github.com/OHDSI/ETL-Synthea">Synthea</a> GitHub site with files to use the synthetic patient generator Synthea</p>
+<p><a href="https://ohdsi.github.io/Eunomia/">Eunomia</a> Link to the Eunomia GitHub.io site with instructions and standard dataset files</p>
 
 
 </section>

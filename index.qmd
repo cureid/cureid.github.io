@@ -19,7 +19,7 @@ A common data model (CDM) allows multiple health care systems with their individ
 
 #### What is an ETL?
 
-ETL stands for Extract, Transform, and Load. Essentially this is the process of mapping data from one system to another.
+ETL stands for Extract, Transform, and Load. Essentially this is the process of mapping data from one system to another.  Please see [The Book of OHDSI, Chapter 6] (https://ohdsi.github.io/TheBookOfOhdsi/ExtractTransformLoad.html).
 
 ## Getting started
 

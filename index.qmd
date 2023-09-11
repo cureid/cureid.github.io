@@ -1,11 +1,14 @@
 ---
 title: "C-PATH / JH guide to getting started with OMOP for CURE ID"
+date-modified: last-modified
 bibliography: references.bib
 ---
 
 ## Welcome
 
-This site is designed to provide guidance, scripts and resources for sites transitioning data to OMOP common data model as part of [CURE ID](https://cure.ncats.io/home).
+This site is designed to provide guidance, scripts and resources for sites transitioning data to OMOP common data model as part of CURE ID.
+
+CURE ID is a platform designed and developed by the US Food and Drug Administration (FDA) and the National Institutes of Health (NIH) National Center for Translational Sciences (NCATS) to capture real world data (RWD) about how existing drugs are used in new ways (e.g., drug repurposing) to treat diseases of high unmet clinical need. The documentation on this site is part of a project funded by the US Department of Health and Human Services (HHS) Assistant Secretary for Planning and Evaluation (ASPE)’s Patient-Centered Outcomes Research Trust Fund (under Interagency Agreement #75F40121S35006) to develop and disseminate tools facilitating the extraction of RWD from the electronic health record (EHR).
 
 ## Introduction
 
@@ -19,7 +22,7 @@ A common data model (CDM) allows multiple health care systems with their individ
 
 #### What is an ETL?
 
-ETL stands for Extract, Transform, and Load. Essentially this is the process of mapping data from one system to another.  Please see [The Book of OHDSI, Chapter 6] (https://ohdsi.github.io/TheBookOfOhdsi/ExtractTransformLoad.html).
+ETL stands for Extract, Transform, and Load. Essentially this is the process of mapping data from one system to another. Please see \[The Book of OHDSI, Chapter 6\] (https://ohdsi.github.io/TheBookOfOhdsi/ExtractTransformLoad.html).
 
 ## Getting started
 
@@ -241,7 +244,7 @@ b.       The concept ids here represent LOINC or SNOMED codes for standard
 
 **Dependencies**: None
 
-**Customization**: By default this script will create tables in a schema titled "deident," however this can be set to whatever value you desire.
+**Customization**: By default, this script will create tables in the Results schema, and will preface the table names with 'deident,' however this can be set to whatever value you desire.
 
 **Steps**:
 
@@ -418,7 +421,7 @@ For the tables of the main domains of the CDM it is imperative that concepts use
 Variable names across all tables follow one convention:
 
 |                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-|----------------------|--------------------------------------------------|
+|-----------------------|-------------------------------------------------|
 | **Notation**        | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | \_SOURCE_VALUE      | Verbatim information from the source data, typically used in ETL to map to CONCEPT_ID, and not to be used by any standard analytics. For example, CONDITION_SOURCE_VALUE = '787.02' was the ICD-9 code captured as a diagnosis from the administrative claim.                                                                                                                                                                                     |
 | \_ID                | Unique identifiers for key entities, which can serve as foreign keys to establish relationships across entities. For example, PERSON_ID uniquely identifies each individual. VISIT_OCCURRENCE_ID uniquely identifies a PERSON encounter at a point of care.                                                                                                                                                                                       |

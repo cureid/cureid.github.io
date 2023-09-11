@@ -109,7 +109,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting started</a></li>
   <li><a href="#cure-id-technical-support-checklist" id="toc-cure-id-technical-support-checklist" class="nav-link" data-scroll-target="#cure-id-technical-support-checklist">CURE ID technical support checklist</a></li>
-  <li><a href="#omop-extract-transform-and-load-guide" id="toc-omop-extract-transform-and-load-guide" class="nav-link" data-scroll-target="#omop-extract-transform-and-load-guide">OMOP Extract, Transform, and Load Guide</a></li>
+  <li><a href="#omop-extract-transform-and-load-guide" id="toc-omop-extract-transform-and-load-guide" class="nav-link" data-scroll-target="#omop-extract-transform-and-load-guide">OMOP Extract, Transform, and Load Guide</a>
+  <ul class="collapse">
+  <li><a href="#ohdsi-etl-resources" id="toc-ohdsi-etl-resources" class="nav-link" data-scroll-target="#ohdsi-etl-resources"><u>OHDSI ETL Resources</u></a></li>
+  <li><a href="#ohdsi-etl-steps" id="toc-ohdsi-etl-steps" class="nav-link" data-scroll-target="#ohdsi-etl-steps"><u>OHDSI ETL Steps</u></a></li>
+  <li><a href="#places-to-connect" id="toc-places-to-connect" class="nav-link" data-scroll-target="#places-to-connect"><u>Places to Connect</u></a></li>
+  </ul></li>
   <li><a href="#omop-cohort-creation-and-de-identification-guide" id="toc-omop-cohort-creation-and-de-identification-guide" class="nav-link" data-scroll-target="#omop-cohort-creation-and-de-identification-guide">OMOP Cohort Creation and De-identification Guide</a></li>
   <li><a href="#omop-table-and-field-basics" id="toc-omop-table-and-field-basics" class="nav-link" data-scroll-target="#omop-table-and-field-basics">OMOP Table and Field Basics</a></li>
   <li><a href="#cure-id-concept-mapping-support" id="toc-cure-id-concept-mapping-support" class="nav-link" data-scroll-target="#cure-id-concept-mapping-support">Cure ID Concept Mapping Support</a></li>
@@ -140,6 +145,12 @@ ul.task-list li input[type="checkbox"] {
 
     
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">September 11, 2023</p>
+    </div>
+  </div>
     
   </div>
   
@@ -148,7 +159,8 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="welcome" class="level2">
 <h2 class="anchored" data-anchor-id="welcome">Welcome</h2>
-<p>This site is designed to provide guidance, scripts and resources for sites transitioning data to OMOP common data model as part of <a href="https://cure.ncats.io/home">CURE ID</a>.</p>
+<p>This site is designed to provide guidance, scripts and resources for sites transitioning data to OMOP common data model as part of CURE ID.</p>
+<p>CURE ID is a platform designed and developed by the US Food and Drug Administration (FDA) and the National Institutes of Health (NIH) National Center for Translational Sciences (NCATS) to capture real world data (RWD) about how existing drugs are used in new ways (e.g., drug repurposing) to treat diseases of high unmet clinical need. The documentation on this site is part of a project funded by the US Department of Health and Human Services (HHS) Assistant Secretary for Planning and Evaluation (ASPE)’s Patient-Centered Outcomes Research Trust Fund (under Interagency Agreement #75F40121S35006) to develop and disseminate tools facilitating the extraction of RWD from the electronic health record (EHR).</p>
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
@@ -160,7 +172,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="what-is-an-etl" class="level4">
 <h4 class="anchored" data-anchor-id="what-is-an-etl">What is an ETL?</h4>
-<p>ETL stands for Extract, Transform, and Load. Essentially this is the process of mapping data from one system to another.</p>
+<p>ETL stands for Extract, Transform, and Load. Essentially this is the process of mapping data from one system to another. Please see [The Book of OHDSI, Chapter 6] (https://ohdsi.github.io/TheBookOfOhdsi/ExtractTransformLoad.html).</p>
 </section>
 </section>
 <section id="getting-started" class="level2">
@@ -195,84 +207,90 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="omop-extract-transform-and-load-guide" class="level2">
 <h2 class="anchored" data-anchor-id="omop-extract-transform-and-load-guide">OMOP Extract, Transform, and Load Guide</h2>
-<p><u>OHDSI ETL Resources:</u></p>
-<p><a href="https://www.ohdsi.org/web/wiki/doku.php?id=documentation:etl_best_practices">OHDSI Wiki: ETL Creation Best Practices</a></p>
-<p><a href="Book of OHDSI - Ch.6 Extract Transform Load">Book of OHDSI (Ch. 6): Extract Transform Load</a></p>
-<p><a href="https://academy.ehden.eu/enrol/index.php?id=4">EHDEN Academy: OMOP CDM and Standardised Vocabularies</a></p>
-<p><a href="https://academy.ehden.eu/course/view.php?id=7">EHDEN Academy: Extract, Transform and Load</a></p>
-<p><a href="https://academy.ehden.eu/enrol/index.php?id=18">EHDEN Academy: Introduction to Usagi &amp; Code Mappings for an ETL</a></p>
-<p>OHDSI ETL Steps:</p>
+<section id="ohdsi-etl-resources" class="level3">
+<h3 class="anchored" data-anchor-id="ohdsi-etl-resources"><u>OHDSI ETL Resources</u></h3>
+<ul>
+<li><a href="https://www.ohdsi.org/web/wiki/doku.php?id=documentation:etl_best_practices">OHDSI Wiki: ETL Creation Best Practices</a></li>
+<li><a href="Book of OHDSI - Ch.6 Extract Transform Load">Book of OHDSI (Ch. 6): Extract Transform Load</a></li>
+<li><a href="https://academy.ehden.eu/enrol/index.php?id=4">EHDEN Academy: OMOP CDM and Standardised Vocabularies</a></li>
+<li><a href="https://academy.ehden.eu/course/view.php?id=7">EHDEN Academy: Extract, Transform and Load</a></li>
+<li><a href="https://academy.ehden.eu/enrol/index.php?id=18">EHDEN Academy: Introduction to Usagi &amp; Code Mappings for an ETL</a></li>
+</ul>
+</section>
+<section id="ohdsi-etl-steps" class="level3">
+<h3 class="anchored" data-anchor-id="ohdsi-etl-steps"><u>OHDSI ETL Steps</u></h3>
 <ol type="1">
-<li>Find your people.</li>
-</ol>
+<li><p><strong>Find your people.</strong></p>
 <ol type="a">
-<li><p>Assemble ETL team: both data experts, medical experts, CDM/vocabulary experts</p></li>
-<li><p>Assign persons with medical knowledge to create code mappings</p></li>
-<li><p>Assign persons with technical knowledge to implement the ETL</p></li>
-<li><p>Schedule regular meetings for quality control maintenance</p></li>
-</ol>
-<ol start="2" type="1">
-<li>Understand your data.</li>
-</ol>
+<li>Assemble ETL team: both data experts, medical experts, CDM/vocabulary experts</li>
+<li>Assign persons with medical knowledge to create code mappings</li>
+<li>Assign persons with technical knowledge to implement the ETL</li>
+<li>Schedule regular meetings for quality control maintenance</li>
+</ol></li>
+<li><p><strong>Understand your data.</strong></p>
 <ol type="a">
-<li><p>Take inventory of source data (tools: White Rabbit)</p></li>
-<li><p>List of tables in database</p></li>
-</ol>
-<ol start="2" type="i">
-<li><p>List fields in each table</p></li>
-<li><p>List distinct values of each field</p></li>
-<li><p>Summarize the frequency of each value of each field.</p></li>
-</ol>
-<ol start="2" type="a">
-<li><p>Define relationships between source data tables and fields (tools: Rabbit-in-a-Hat)</p></li>
-<li><p>Record both relationship definition decisions and reasoning behind these decisions</p></li>
-<li><p>Determine standardized vocabularies that already exist in your source data (ICD-10, CPT, HCPCS, LOINC, etc.)</p></li>
-<li><p>Many commonly used standardized coding systems have already been mapped to the OMOP vocabulary – utilize the work done by others across the OHDSI community to accelerate the process of mapping your data systems to OMOP.</p></li>
-<li><p>Determine the coding systems in your source data that are proprietary or not already mapped to OMOP (proprietary patient/visit identifiers, account numbers, charge codes, etc.)</p></li>
-</ol>
-<ol start="3" type="1">
-<li>Map your codes to OMOP concepts.</li>
-</ol>
+<li>Take inventory of source data (tools: <a href="https://github.com/OHDSI/WhiteRabbit">White Rabbit</a>)
+<ol type="i">
+<li>List of tables in database</li>
+<li>List fields in each table</li>
+<li>List distinct values of each field</li>
+<li>Summarize the frequency of each value of each field.</li>
+</ol></li>
+<li>Define relationships between source data tables and fields (tools: <a href="https://github.com/OHDSI/WhiteRabbit">Rabbit-in-a-Hat</a>)
+<ol type="i">
+<li>Record both relationship definition decisions and reasoning behind these decisions</li>
+</ol></li>
+<li>Determine standardized vocabularies that already exist in your source data (ICD-10, CPT, HCPCS, LOINC, etc.)
+<ol type="i">
+<li>Many commonly used standardized coding systems have already been mapped to the OMOP vocabulary – utilize the work done by others across the OHDSI community to accelerate the process of mapping your data systems to OMOP.</li>
+</ol></li>
+<li>Determine the coding systems in your source data that are proprietary or not already mapped to OMOP (proprietary patient/visit identifiers, account numbers, charge codes, etc.)</li>
+</ol></li>
+<li><p><strong>Map your codes to OMOP concepts.</strong></p>
 <ol type="a">
-<li><p>Summarize the frequency of each code from your source data code sets that will require mapping to OMOP concepts.</p></li>
-<li><p>Create your source data to OMOP mapping. (tools: Usagi)</p></li>
-<li><p>Assign this task to the ETL team members with appropriate medical knowledge to discern which codes are most synonymous based on their descriptions. Medical knowledge is key for this step as semantic understanding of clinical descriptions is required to make decisions on mapping source data concepts to OMOP concepts.</p></li>
-</ol>
-<ol start="2" type="i">
-<li><p>Start with the most frequently used codes and determine your threshold of code frequency to include in the mapping.</p></li>
-<li><p>Focus on a particular project or clinical domain to limit the scope of data needed for capture and conversion to OMOP.</p></li>
-<li><p>Utilize the Usagi tool for mapping suggestions and searching based on similarity of code descriptions.</p></li>
-</ol>
-<ol start="4" type="1">
-<li>OMOPify your data!</li>
-</ol>
+<li>Summarize the frequency of each code from your source data code sets that will require mapping to OMOP concepts.</li>
+<li>Create your source data to OMOP mapping. (tools: <a href="https://github.com/OHDSI/Usagi">Usagi</a>)
+<ol type="i">
+<li>Assign this task to the ETL team members with appropriate medical knowledge to discern which codes are most synonymous based on their descriptions. Medical knowledge is key for this step as semantic understanding of clinical descriptions is required to make decisions on mapping source data concepts to OMOP concepts.</li>
+<li>Start with the most frequently used codes and determine your threshold of code frequency to include in the mapping.</li>
+<li>Focus on a particular project or clinical domain to limit the scope of data needed for capture and conversion to OMOP.</li>
+<li>Utilize the Usagi tool for mapping suggestions and searching based on similarity of code descriptions.</li>
+</ol></li>
+</ol></li>
+<li><p><strong>OMOPify your data!</strong></p>
 <ol type="a">
-<li><p>Determine the technology and software used or approved at your site for data storage, querying, and transfer. Determine the tools and technologies that team members and internal staff have expertise in.</p></li>
-<li><p>Generate the OMOP DDLs</p></li>
-<li><p>Using R: https://github.com/OHDSI/CommonDataModel</p></li>
-</ol>
-<ol start="2" type="i">
-<li><p>Using SQL: https://github.com/OHDSI/CommonDataModel/tree/v5.4.0/inst/ddl/5.4</p></li>
-<li><p>Implement the ETL.</p></li>
-<li><p>Assign this task to the ETL team members with technical knowledge and permission for accessing and extracting source data and writing to a database.</p></li>
-<li><p>Many tools and technologies can be used for this step. Utilize the existing tools, technologies, and expertise of your ETL team and internal staff.</p></li>
-</ol>
-<ol start="5" type="1">
-<li>Evaluate your data.</li>
-</ol>
+<li>Determine the technology and software used or approved at your site for data storage, querying, and transfer. Determine the tools and technologies that team members and internal staff have expertise in.</li>
+<li>Generate the OMOP DDLs
+<ol type="i">
+<li>Using R: https://github.com/OHDSI/CommonDataModel</li>
+<li>Using SQL: https://github.com/OHDSI/CommonDataModel/tree/v5.4.0/inst/ddl/5.4</li>
+</ol></li>
+<li>Implement the ETL.
+<ol type="i">
+<li>Assign this task to the ETL team members with technical knowledge and permission for accessing and extracting source data and writing to a database.</li>
+<li>Many tools and technologies can be used for this step. Utilize the existing tools, technologies, and expertise of your ETL team and internal staff.</li>
+</ol></li>
+</ol></li>
+<li><p><strong>Evaluate your data.</strong></p>
 <ol type="a">
-<li><p>Involve everyone in the evaluation and maintenance of ETL and data quality.</p></li>
-<li><p>Review the ETL design documentation, computer code used in implementation, and concept mappings</p></li>
-<li><p>Perform a manual audit using a sample of patients from both source data and derived OMOP data</p></li>
-<li><p>Compare summary level counts of key fields between source data and OMOP derived data. (tools: Achilles)</p></li>
+<li>Involve everyone in the evaluation and maintenance of ETL and data quality.</li>
+<li>Review the ETL design documentation, computer code used in implementation, and concept mappings</li>
+<li>Perform a manual audit using a sample of patients from both source data and derived OMOP data</li>
+<li>Compare summary level counts of key fields between source data and OMOP derived data. (tools: Achilles)</li>
+</ol></li>
 </ol>
-<p>★ Ask for help along the way!</p>
-<p>Reach out to the OHDSI community to find others with experience, expertise, and guidance for each step of your ETL to OMOP journey. The open, collaborative community of OHDSI is the most powerful tool at your disposal. Use it (us)!</p>
-<p>Places to connect:</p>
-<p>• OHDSI.org: https://www.ohdsi.org/</p>
-<p>• OHDSI Wiki: https://www.ohdsi.org/web/wiki/doku.php</p>
-<p>• OHDSI Forums: https://forums.ohdsi.org/</p>
-<p>• OHDSI Workgroups: https://www.ohdsi.org/workgroups/</p>
+<p><strong>★ Ask for help along the way!</strong></p>
+<p>The CURE ID support team is here to help you. We also encourage you to connect with the OHDSI community to find others with experience, expertise, and guidance for each step of your ETL to OMOP journey. The open, collaborative community of OHDSI is the most powerful tool at your disposal. Use it (us)!</p>
+</section>
+<section id="places-to-connect" class="level3">
+<h3 class="anchored" data-anchor-id="places-to-connect"><u>Places to Connect</u></h3>
+<ul>
+<li><p>OHDSI.org: https://www.ohdsi.org/</p></li>
+<li><p>OHDSI Wiki: https://www.ohdsi.org/web/wiki/doku.php</p></li>
+<li><p>OHDSI Forums: https://forums.ohdsi.org/</p></li>
+<li><p>OHDSI Workgroups: https://www.ohdsi.org/workgroups/</p></li>
+</ul>
+</section>
 </section>
 <section id="omop-cohort-creation-and-de-identification-guide" class="level2">
 <h2 class="anchored" data-anchor-id="omop-cohort-creation-and-de-identification-guide">OMOP Cohort Creation and De-identification Guide</h2>
@@ -346,7 +364,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Filename</strong>: <a href="https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/04_DE_ID_CDM_Table_ddl.sql">04_DE_ID_CDM_Table_ddl.sql</a></p>
 <p><strong>Purpose</strong>: Generate the necessary tables for the de-identified version of the CURE ID Cohort</p>
 <p><strong>Dependencies</strong>: None</p>
-<p><strong>Customization</strong>: By default this script will create tables in a schema titled “deident,” however this can be set to whatever value you desire.</p>
+<p><strong>Customization</strong>: By default, this script will create tables in the Results schema, and will preface the table names with ‘deident,’ however this can be set to whatever value you desire.</p>
 <p><strong>Steps</strong>:</p>
 <p>1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Create the Person table</p>
 <p>2)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Create the Death table</p>

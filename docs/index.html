@@ -119,15 +119,28 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#omop-table-and-field-basics" id="toc-omop-table-and-field-basics" class="nav-link" data-scroll-target="#omop-table-and-field-basics">OMOP Table and Field Basics</a></li>
   <li><a href="#cure-id-concept-mapping-support" id="toc-cure-id-concept-mapping-support" class="nav-link" data-scroll-target="#cure-id-concept-mapping-support">Cure ID Concept Mapping Support</a></li>
   <li><a href="#identifying-oxygen-devices-in-epicclarity" id="toc-identifying-oxygen-devices-in-epicclarity" class="nav-link" data-scroll-target="#identifying-oxygen-devices-in-epicclarity">Identifying Oxygen Devices in Epic/Clarity</a></li>
-  <li><a href="#edge-tool-suite" id="toc-edge-tool-suite" class="nav-link" data-scroll-target="#edge-tool-suite">Edge Tool Suite</a></li>
-  <li><a href="#understanding-perseus" id="toc-understanding-perseus" class="nav-link" data-scroll-target="#understanding-perseus">Understanding Perseus</a></li>
+  <li><a href="#geocoding-and-integrating-sdoh-data" id="toc-geocoding-and-integrating-sdoh-data" class="nav-link" data-scroll-target="#geocoding-and-integrating-sdoh-data">Geocoding and Integrating SDOH Data</a></li>
+  <li><a href="#ohdsi-tool-suite" id="toc-ohdsi-tool-suite" class="nav-link" data-scroll-target="#ohdsi-tool-suite">OHDSI Tool Suite</a></li>
   <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices">Best Practices</a></li>
   <li><a href="#manuscripts" id="toc-manuscripts" class="nav-link" data-scroll-target="#manuscripts">Manuscripts</a></li>
   <li><a href="#webinars" id="toc-webinars" class="nav-link" data-scroll-target="#webinars">Webinars</a></li>
   <li><a href="#omop-scripts-for-epic" id="toc-omop-scripts-for-epic" class="nav-link" data-scroll-target="#omop-scripts-for-epic">OMOP Scripts for Epic</a></li>
   <li><a href="#using-synthetic-data" id="toc-using-synthetic-data" class="nav-link" data-scroll-target="#using-synthetic-data">Using synthetic data</a></li>
   <li><a href="#useful-resources" id="toc-useful-resources" class="nav-link" data-scroll-target="#useful-resources">Useful Resources</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#dboyce-training-resources" id="toc-dboyce-training-resources" class="nav-link" data-scroll-target="#dboyce-training-resources">DBoyce Training Resources</a>
+  <ul class="collapse">
+  <li><a href="#omop-cdm-basic-data-dictionary" id="toc-omop-cdm-basic-data-dictionary" class="nav-link" data-scroll-target="#omop-cdm-basic-data-dictionary">OMOP CDM Basic Data Dictionary</a></li>
+  <li><a href="#projects-best-suited-for-observational-research-and-ohdsi-network-studies" id="toc-projects-best-suited-for-observational-research-and-ohdsi-network-studies" class="nav-link" data-scroll-target="#projects-best-suited-for-observational-research-and-ohdsi-network-studies">Projects Best Suited for Observational Research and OHDSI Network Studies</a></li>
+  <li><a href="#analytic-use-cases-and-examples" id="toc-analytic-use-cases-and-examples" class="nav-link" data-scroll-target="#analytic-use-cases-and-examples">Analytic Use Cases and Examples</a></li>
+  <li><a href="#data-content-ontology" id="toc-data-content-ontology" class="nav-link" data-scroll-target="#data-content-ontology">Data Content Ontology</a></li>
+  <li><a href="#current-cdm" id="toc-current-cdm" class="nav-link" data-scroll-target="#current-cdm">Current CDM</a></li>
+  <li><a href="#commonly-used-cdm-tables-overview" id="toc-commonly-used-cdm-tables-overview" class="nav-link" data-scroll-target="#commonly-used-cdm-tables-overview">Commonly Used CDM Tables Overview</a></li>
+  <li><a href="#omop-data-quality" id="toc-omop-data-quality" class="nav-link" data-scroll-target="#omop-data-quality">OMOP Data Quality</a></li>
+  <li><a href="#etl-basics" id="toc-etl-basics" class="nav-link" data-scroll-target="#etl-basics">ETL Basics</a></li>
+  <li><a href="#etl-steps" id="toc-etl-steps" class="nav-link" data-scroll-target="#etl-steps">ETL Steps</a></li>
+  <li><a href="#ohdsi-resources" id="toc-ohdsi-resources" class="nav-link" data-scroll-target="#ohdsi-resources">OHDSI Resources</a></li>
+  <li><a href="#recommended-trainings" id="toc-recommended-trainings" class="nav-link" data-scroll-target="#recommended-trainings">Recommended Trainings</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -148,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">September 11, 2023</p>
+      <p class="date-modified">December 8, 2023</p>
     </div>
   </div>
     
@@ -178,6 +191,13 @@ ul.task-list li input[type="checkbox"] {
 <section id="getting-started" class="level2">
 <h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
 <p>The code for the CURE ID project is hosted on <a href="https://github.com/">GitHub</a>. GitHub is a web-based platform that allows developers to host, review, and collaborate on code repositories. It is widely used for version control and source code management, and it provides features such as issue tracking, wikis, and project management tools to facilitate team collaboration.&nbsp;</p>
+<p>The repository containing the code and concept sets can be accessed at <a href="https://github.com/OHDSI/CureIdRegistry">OHDSI/CureIdRegistry</a> There are four branches within the repository that differ only in the clinical variables included in the cohort curation scripts. Be sure to select the appropriate branch based on individual health system data and ETL capacity:</p>
+<ol type="1">
+<li>Main branch: fundamental set of variables for Registry submission - demographics, comorbidities, vitals, labs, medications, vaccinations, oxygen devices, viral assays, and COVID complications.</li>
+<li>Refresh Basic: the main branch variables with additional concepts to allow for Charlson Comorbidity Index calculation</li>
+<li>Refresh Advanced: the refresh basic branch variables with additional concepts for Area Deprivation Index calculation (this branch requires Geocoding patient addresses to determine Census Blocks)</li>
+<li>Main CDM v5.3: this is the same set of variables included in the main branch but with cohort curation scripts written for the OMOP CDM version 5.3 (there are four fields names that changed from version 5.3 to 5.4)</li>
+</ol>
 </section>
 <section id="cure-id-technical-support-checklist" class="level2">
 <h2 class="anchored" data-anchor-id="cure-id-technical-support-checklist">CURE ID technical support checklist</h2>
@@ -514,8 +534,13 @@ ul.task-list li input[type="checkbox"] {
 <h1>Identifying Oxygen Devices in Epic/Clarity</h1>
 <p><a href="https://userweb.epic.com/Thread/118440/Identifying-Oxygen-Devices-Flowsheet-Measures-to-Map-to-OMOP/">Identifying Oxygen Devices Flowsheet Measures to Map to OMOP Concepts</a></p>
 </section>
-<section id="edge-tool-suite" class="level1">
-<h1>Edge Tool Suite</h1>
+<section id="geocoding-and-integrating-sdoh-data" class="level1">
+<h1>Geocoding and Integrating SDOH Data</h1>
+<p>Geocoding</p>
+<p>The primary consideration for linking geospatial data like social determinants of health and environmental risk factors with patient data is protecting PHI when geocoding patient home address and location data. Do not use web-based API services for geocoding as they require patient addresses to be sent to an external server for batch geocoding.</p>
+</section>
+<section id="ohdsi-tool-suite" class="level1">
+<h1>OHDSI Tool Suite</h1>
 <p>The Edge Tool Suite are a set of OHDSI tools that should be deployed by the site that provide value around the OMOP CDM. This work was funded by the CURE ID initiative <a href="https://cure.ncats.io" class="uri">https://cure.ncats.io</a></p>
 <p>The OHDSI open source software configured for deployment include:</p>
 <ul>
@@ -555,8 +580,8 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="https://github.com/OHDSI/Broadsea" class="uri">https://github.com/OHDSI/Broadsea</a></p>
 <p><a href="https://github.com/OHDSI/Athena" class="uri">https://github.com/OHDSI/Athena</a></p>
 </section>
-<section id="perseus-and-the-etl-process" class="level4">
-<h4 class="anchored" data-anchor-id="perseus-and-the-etl-process">Perseus and the ETL Process</h4>
+<section id="the-etl-process" class="level4">
+<h4 class="anchored" data-anchor-id="the-etl-process">The ETL Process</h4>
 <p><a href="https://github.com/OHDSI/Perseus" class="uri">https://github.com/OHDSI/Perseus</a></p>
 <p><a href="https://github.com/OHDSI/WhiteRabbit" class="uri">https://github.com/OHDSI/WhiteRabbit</a></p>
 <p><a href="https://github.com/OHDSI/Usagi" class="uri">https://github.com/OHDSI/Usagi</a></p>
@@ -576,13 +601,6 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="https://github.com/OHDSI/Hades" class="uri">https://github.com/OHDSI/Hades</a></p>
 <p><a href="https://github.com/OHDSI/DataQualityDashboard" class="uri">https://github.com/OHDSI/DataQualityDashboard</a></p>
 </section>
-</section>
-<section id="understanding-perseus" class="level1">
-<h1>Understanding Perseus</h1>
-<p><img src="images/Perseus Diagram.jpg" class="img-fluid"></p>
-<p>Perseus incorporates multiple open-source applications within OHDSI including White Rabbit, Rabbit in a Hat, and Usagi to help organizations perform ETL</p>
-<p>(Diagram credit: <a href="http://www.ltscomputingllc.com/">Lee Evans/LTS Computing LLC</a>)</p>
-<p>For further explanation check <a href="https://youtu.be/HhQ9x3bsv4o?t=2264">here</a></p>
 </section>
 <section id="best-practices" class="level1">
 <h1>Best Practices</h1>
@@ -632,10 +650,493 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="https://github.com/OHDSI/Perseus">OHDSI/Perseus GitHub site</a> OHDSI/Perseus on GitHub</p>
 <p><a href="https://www.ohdsi.org/2022showcase-79/">How to develop capacity for observational research within a health system</a> Presentation on building capacity from 2022 OHDSI Collaborator Showcase</p>
 </section>
-<section id="section" class="level1">
-<h1></h1>
+<section id="dboyce-training-resources" class="level1">
+<h1>DBoyce Training Resources</h1>
+<p><a href="https://github.com/DBJHU/DBJHU.github.io">Danielle Boyce’s compilation of training resources</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#ohdsi-resources">OHDSI_Resources</a></li>
+<li><a href="#omop-cdm-basic-data-dictionary">OMOP CDM Basic Data Dictionary</a></li>
+<li><a href="#projects-best-suited-for-observational-research-and-ohdsi-network-studies">Projects Best Suited for Observational Research and OHDSI Network Studies</a></li>
+<li><a href="#analytic-use-cases-and-examples">Analytic Use Cases and Examples</a></li>
+<li><a href="#Data-Content-Ontology">Data Content Ontology</a></li>
+<li><a href="#current-cdm">Current CDM</a></li>
+<li><a href="#commonly-used-cdm-tables-overview">Commonly Used CDM Tables Overview</a></li>
+<li><a href="#ETL-Basics">ETL Basics</a></li>
+<li><a href="#ohdsi-analysis-tools">OHDSI Analysis Tools</a></li>
+<li><a href="#current-cdm">Current CDM</a></li>
+<li><a href="#commonly-used-cdm-tables-overview">Commonly Used CDM Tables Overview</a></li>
+<li><a href="#ETL-Basics">ETL Basics</a></li>
+<li><a href="#ohdsi-analysis-tools">OHDSI Analysis Tools</a></li>
+<li><a href="#data-science-handbook">Data Science Handbook</a></li>
+<li><a href="#recommended-trainings">Recommended Trainings</a></li>
+</ul>
+<section id="omop-cdm-basic-data-dictionary" class="level3">
+<h3 class="anchored" data-anchor-id="omop-cdm-basic-data-dictionary">OMOP CDM Basic Data Dictionary</h3>
+For a sample interactive OMOP data dictionary, please click on the image below: <a href="https://dbjhu.github.io/OMOPDD.html"><img src="https://dbjhu.github.io/DDthumbnail.png" class="img-fluid" alt="OMOP Data Dictionary Thumbnail"></a>
+<div style="text-align: right">
+<a href="#table-of-contents">Back to Table of Contents</a>
+</div>
+</section>
+<section id="projects-best-suited-for-observational-research-and-ohdsi-network-studies" class="level3">
+<h3 class="anchored" data-anchor-id="projects-best-suited-for-observational-research-and-ohdsi-network-studies">Projects Best Suited for Observational Research and OHDSI Network Studies</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="AnalyticUseCases.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Source: https://www.ohdsi.org/wp-content/uploads/2023/01/SOS-challenge-intro-24jan2023.pdf</figcaption>
+</figure>
+</div>
+<div style="text-align: right">
+<a href="#table-of-contents">Back to Table of Contents</a>
+</div>
+<p>(This is the exact same table as in the image above only in Markdown)</p>
+</section>
+<section id="analytic-use-cases-and-examples" class="level3">
+<h3 class="anchored" data-anchor-id="analytic-use-cases-and-examples">Analytic Use Cases and Examples</h3>
+<table class="table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 9%">
+<col style="width: 38%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Analytic use case</th>
+<th>Type</th>
+<th>Structure</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Clinical characterization</strong></td>
+<td>Disease Natural History</td>
+<td>Amongst patients who are diagnosed with <code>&lt;insert your favorite disease&gt;</code>, what are the patient’s characteristics from their medical history?</td>
+<td>Amongst patients with rheumatoid arthritis, what are their demographics (age, gender), prior conditions, medications, and health service utilization behaviors?</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Treatment utilization</td>
+<td>Amongst patients who have <code>&lt;insert your favorite disease&gt;</code>, which treatments were patients exposed to amongst <code>&lt;list of treatments for disease&gt;</code> and in which sequence?</td>
+<td>Amongst patients with depression, which treatments were patients exposed to SSRI, SNRI, TCA, bupropion, esketamine and in which sequence?</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Outcome incidence</td>
+<td>Amongst patients who are new users of <code>&lt;insert your favorite drug&gt;</code>, how many patients experienced <code>&lt;insert your favorite known adverse event from the drug profile&gt;</code> within <code>&lt;time horizon following exposure start&gt;</code>?</td>
+<td>Amongst patients who are new users of methylphenidate, how many patients experienced psychosis within 1 year of initiating treatment?</td>
+</tr>
+<tr class="even">
+<td><strong>Population-level effect estimation</strong></td>
+<td>Safety surveillance</td>
+<td>Does exposure to <code>&lt;insert your favorite drug&gt;</code> increase the risk of experiencing <code>&lt;insert an adverse event&gt;</code> within <code>&lt;time horizon following exposure start&gt;</code>?</td>
+<td>Does exposure to ACE inhibitor increase the risk of experiencing Angioedema within 1 month after exposure start?</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Comparative effectiveness</td>
+<td>Does exposure to <code>&lt;insert your favorite drug&gt;</code> have a different risk of experiencing <code>&lt;insert any outcome (safety or benefit)&gt;</code> within <code>&lt;time horizon following exposure start&gt;</code>, relative to <code>&lt;insert your comparator treatment&gt;</code>?</td>
+<td>Does exposure to ACE inhibitor have a different risk of experiencing acute myocardial infarction while on treatment, relative to thiazide diuretic?</td>
+</tr>
+<tr class="even">
+<td><strong>Patient level prediction</strong></td>
+<td>Disease onset and progression</td>
+<td>For a given patient who is diagnosed with <code>&lt;insert your favorite disease&gt;</code>, what is the probability that they will go on to have <code>&lt;another disease or related complication&gt;</code> within <code>&lt;time horizon from diagnosis&gt;</code>?</td>
+<td>For a given patient who is newly diagnosed with atrial fibrillation, what is the probability that they will go onto to have ischemic stroke in next 3 years?</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Treatment response</td>
+<td>For a given patient who is a new user of <code>&lt;insert your favorite chronically-used drug&gt;</code>, what is the probability that they will <code>&lt;insert desired effect&gt;</code> in <code>&lt;time window&gt;</code>?</td>
+<td>For a given patient with T2DM who start on metformin, what is the probability that they will maintain HbA1C &lt;6.5% after 3 years?</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Treatment safety</td>
+<td>For a given patient who is a new user of <code>&lt;insert your favorite drug&gt;</code>, what is the probability that they will experience <code>&lt;insert adverse event&gt;</code> within <code>&lt;time horizon following exposure&gt;</code>?</td>
+<td>For a given patient who is a new user of warfarin, what is the probability that they will have GI bleed in 1 year?</td>
+</tr>
+</tbody>
+</table>
+<div style="text-align: right">
+<a href="#table-of-contents">Back to Table of Contents</a>
+</div>
+<p>Important Paper About Implementation of the OMOP CDM! <a href="https://doi.org/10.1093/jamia/ocad214">Erica A Voss, Clair Blacketer, Sebastiaan van Sandijk, Maxim Moinat, Michael Kallfelz, Michel van Speybroeck, Daniel Prieto-Alhambra, Martijn J Schuemie, Peter R Rijnbeek, European Health Data &amp; Evidence Network—learnings from building out a standardized international health data network, Journal of the American Medical Informatics Association, 2023;, ocad214</a></p>
+<div style="text-align: right">
+<a href="#table-of-contents">Back to Table of Contents</a>
+</div>
+</section>
+<section id="data-content-ontology" class="level3">
+<h3 class="anchored" data-anchor-id="data-content-ontology">Data Content Ontology</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://img.youtube.com/vi/4uXqNLsiVuc/maxresdefault.jpg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Dr.&nbsp;Rachel Richesson presents “Learning to Use EHR Data in Learning Health Systems”</figcaption>
+</figure>
+</div>
+<p>Overview of Major Clinical Terminologies and Coding Systems</p>
+<p>This document provides a detailed overview of several essential clinical terminologies and coding systems used in healthcare. Each system has a specific role and is crucial for standardized communication in healthcare settings. The information includes development history, usage, and updates of these systems.</p>
+<p>For more in-depth information, links to the respective official websites are provided.</p>
+<p>SNOMED Clinical Terms (SNOMED CT) - <strong>Development:</strong> Originally by the College of American Pathologists, now under SNOMED International. - <strong>Adoption:</strong> Used in over 50 countries. - <strong>Concepts:</strong> Over 340,000 active concepts in 19 hierarchies. - <strong>Usage:</strong> Encodes clinical information including diseases, findings, and procedures. - <strong>Updates:</strong> Biannual, with more frequent updates planned. - <strong>More Information:</strong> <a href="https://www.snomed.org/snomed-ct">SNOMED International</a></p>
+<p>Logical Observation Identifiers Names and Codes (LOINC) - <strong>Developer:</strong> Regenstrief Institute. - <strong>Function:</strong> Identifiers for laboratory and clinical observations. - <strong>Content:</strong> Over 90,000 terms. - <strong>Collaboration:</strong> With SNOMED CT for coded content development. - <strong>Updates:</strong> Biannual. - <strong>More Information:</strong> <a href="https://loinc.org">LOINC</a></p>
+<p>RxNorm - <strong>Developer:</strong> National Library of Medicine (NLM). - <strong>Function:</strong> Standard nomenclature for medications. - <strong>Integration:</strong> Links to various drug vocabularies. - <strong>Access:</strong> Requires UMLS user license for proprietary content. - <strong>More Information:</strong> <a href="https://www.nlm.nih.gov/research/umls/rxnorm">RxNorm - NLM</a></p>
+<p>International Classification of Disease (ICD) - <strong>Endorsement:</strong> World Health Organization (WHO). - <strong>Versions:</strong> ICD-10 widely used with national extensions; ICD-11 adopted for future use. - <strong>Purpose:</strong> Epidemiology, health management, clinical purposes. - <strong>Updates:</strong> Annual, freely available. - <strong>More Information:</strong> <a href="https://www.who.int/classifications/icd">WHO ICD</a></p>
+<p>Current Procedural Terminology (CPT) - <strong>Developer:</strong> American Medical Association (AMA). - <strong>Use:</strong> Encoding of medical services and procedures in the USA. - <strong>Categories:</strong> Three categories of codes. - <strong>Requirement:</strong> License from AMA for use. - <strong>More Information:</strong> <a href="https://www.ama-assn.org/practice-management/cpt">CPT - AMA</a></p>
+<p>Human Phenotype Ontology (HPO) - <strong>Function:</strong> Bioinformatic resources for human diseases and phenotypes analysis. - <strong>Components:</strong> Phenotype vocabulary, disease-phenotype annotations, algorithms. - <strong>Applications:</strong> Genomic interpretation, gene-disease discovery, precision medicine. - <strong>Content:</strong> Over 13,000 terms in 5 hierarchies. - <strong>Availability:</strong> Freely available, multiple releases per year. - <strong>More Information:</strong> <a href="https://hpo.jax.org">Human Phenotype Ontology</a></p>
+<p>Unified Medical Language System (UMLS) - <strong>Initiation:</strong> By the US National Library of Medicine in 1986. - <strong>Goal:</strong> To aid in the retrieval and integration of electronic biomedical information. - <strong>Challenge Addressed:</strong> Different vocabularies expressing the same information differently. - <strong>Availability:</strong> Free, but requires a license due to additional licensing requirements of some contents. - <strong>More Information:</strong> <a href="https://www.nlm.nih.gov/research/umls">UMLS - NLM</a></p>
+<p>Ontology Mapping in BioPortal Applications - <strong>Process:</strong> Finding the closest match of a code from one ontology in another. - <strong>Matching:</strong> Exact equivalence is rare; approximate matching is common. - <strong>Challenges:</strong> Labor-intensive and requires understanding the maps’ nature and limitations. - <strong>Alternative Approach:</strong> Mapping multiple ontologies to a central core terminology, as used by the OHDSI consortium. - <strong>More Information:</strong> <a href="https://bioportal.bioontology.org">BioPortal</a></p>
+<pre><code>&lt;div style="text-align: right"&gt;&lt;a href="#table-of-contents"&gt;Back to Table of Contents&lt;/a&gt;&lt;/div&gt;</code></pre>
+<p>OMOP Domains by Source to Standard Vocabulary</p>
+<pre class="mermaid"><code>graph LR
+    ICD9("ICD9") --&gt;|Transformation to OMOP CDM| SNOMED("STANDARD&lt;br&gt;Vocabulary Concept Code&lt;br&gt;SNOMED")
+    ICD10("ICD10") --&gt;|Transformation to OMOP CDM| SNOMED</code></pre>
+<div style="text-align: right">
+<a href="#table-of-contents">Back to Table of Contents</a>
+</div>
+<table class="table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 37%">
+<col style="width: 31%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Domain</th>
+<th>Source Vocabulary</th>
+<th>Standard Vocabulary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Conditions</td>
+<td>ICD9, ICD10</td>
+<td>SNOMED</td>
+</tr>
+<tr class="even">
+<td>Measurements</td>
+<td>LOINC or institutional specific codes</td>
+<td>LOINC</td>
+</tr>
+<tr class="odd">
+<td>Drugs</td>
+<td>NDC</td>
+<td>RxNORM</td>
+</tr>
+<tr class="even">
+<td>Procedures</td>
+<td>ICD9, ICD10, CPT</td>
+<td>SNOMED</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>ICD = International Classification of Diseases</p></li>
+<li><p>SNOMED = Systematized Nomenclature of Medicine</p></li>
+<li><p>LOINC = Logical Observation Identifiers Names and Codes</p></li>
+<li><p>NDC = National Drug Code</p></li>
+<li><p>CPT = Current Procedural Terminology</p>
+<div style="text-align: right">
+<a href="#table-of-contents">Back to Table of Contents</a>
+</div></li>
+</ul>
+</section>
+<section id="current-cdm" class="level3">
+<h3 class="anchored" data-anchor-id="current-cdm">Current CDM</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://github.com/DBJHU/DBJHU.github.io/blob/main/cdm54.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">CDM54 Image</figcaption>
+</figure>
+</div>
+<p><em>Source: <a href="https://ohdsi.github.io/CommonDataModel/index.html">OHDSI Common Data Model</a></em></p>
+<div style="text-align: right">
+<a href="#table-of-contents">Back to Table of Contents</a>
+</div>
+<p><a href="https://github.com/DBJHU/DBJHU.github.io/blob/main/SelectOMOPDataDictionaryInteractivev2.html">Interactive (Select) OMOP Data Dictionary</a></p>
+<div style="text-align: right">
+<a href="#table-of-contents">Back to Table of Contents</a>
+</div>
+</section>
+<section id="commonly-used-cdm-tables-overview" class="level3">
+<h3 class="anchored" data-anchor-id="commonly-used-cdm-tables-overview">Commonly Used CDM Tables Overview</h3>
+<p>The OMOP common data model (CDM) is a relational database made up of different tables that relate to each other by foreign keys (XXXX_ID values; e.g., PERSON_ID or PROVIDER_ID). The OMOP tables in your data export are as follows:</p>
+<table class="table">
+<colgroup>
+<col style="width: 48%">
+<col style="width: 51%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Table</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Person</td>
+<td>Contains basic demographic information describing a participant, including biological sex, birth date, race, and ethnicity.</td>
+</tr>
+<tr class="even">
+<td>Visit_occurrence</td>
+<td>Captures encounters with healthcare providers or similar events. Contains the type of visit a person has (outpatient care, inpatient care, or long-term care), as well as the date and duration information. Rows in other tables can reference this table, for example, condition_occurrences related to a specific visit.</td>
+</tr>
+<tr class="odd">
+<td>Condition_occurrence</td>
+<td>Indicates the presence of a disease or medical condition stated as a diagnosis, a sign, or symptom, which is either observed by a provider or reported by the patient.</td>
+</tr>
+<tr class="even">
+<td>Drug_exposure</td>
+<td>Captures records about the utilization of a medication. Drug exposures include prescription and over-the-counter medicines, vaccines, and large-molecule biologic therapies. Radiological devices ingested or applied locally do not count as drugs. Drug exposure is inferred from clinical events associated with orders, prescriptions written, pharmacy dispensing, procedural administrations, and other patient-reported information.</td>
+</tr>
+<tr class="odd">
+<td>Measurement</td>
+<td>Contains both orders and results of a systematic and standardized examination or testing of a participant or participant’s sample, including laboratory tests, vital signs, quantitative findings from pathology reports, etc.</td>
+</tr>
+<tr class="even">
+<td>Procedure_occurrence</td>
+<td>Contains records of activities or processes ordered by or carried out by a healthcare provider on the patient to have a diagnostic or therapeutic purpose.</td>
+</tr>
+<tr class="odd">
+<td>Observation</td>
+<td>Captures clinical facts about a person obtained in the context of an examination, questioning, or a procedure. Any data that cannot be represented by another domain, such as social and lifestyle facts, medical history, and family history, are recorded here.</td>
+</tr>
+<tr class="even">
+<td>Device_exposure</td>
+<td>Captures information about a person’s exposure to a foreign physical object or instrument which is used for diagnostic or therapeutic purposes. Devices include implantable objects, blood transfusions, medical equipment and supplies, other instruments used in medical procedures, and material used in clinical care.</td>
+</tr>
+<tr class="odd">
+<td>Death</td>
+<td>Contains the clinical events surrounding how and when a participant dies.</td>
+</tr>
+</tbody>
+</table>
+<div style="text-align: right">
+<a href="#table-of-contents">Back to Table of Contents</a>
+</div>
+</section>
+<section id="omop-data-quality" class="level3">
+<h3 class="anchored" data-anchor-id="omop-data-quality">OMOP Data Quality</h3>
+<p><a href="https://ohdsi.github.io/TheBookOfOhdsi/DataQuality.html">The Book of OHDSI - Chapter 15: Data Quality</a></p>
+<p><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5051581/">Kahn MG, Callahan TJ, Barnard J, Bauck AE, Brown J, Davidson BN, Estiri H, Goerg C, Holve E, Johnson SG, Liaw ST, Hamilton-Lopez M, Meeker D, Ong TC, Ryan P, Shang N, Weiskopf NG, Weng C, Zozus MN, Schilling L. A Harmonized Data Quality Assessment Terminology and Framework for the Secondary Use of Electronic Health Record Data. EGEMS (Wash DC). 2016 Sep 11;4(1):1244. doi: 10.13063/2327-9214.1244. PMID: 27713905; PMCID: PMC5051581.</a></p>
+</section>
+<section id="etl-basics" class="level3">
+<h3 class="anchored" data-anchor-id="etl-basics">ETL Basics</h3>
+<p>https://www.ohdsi.org/wp-content/uploads/2019/09/OMOP-Common-Data-Model-Extract-Transform-Load.pdf https://ohdsi.github.io/TheBookOfOhdsi/ExtractTransformLoad.html</p>
+<div style="text-align: right">
+<a href="#table-of-contents">Back to Table of Contents</a>
+</div>
+</section>
+<section id="etl-steps" class="level3">
+<h3 class="anchored" data-anchor-id="etl-steps">ETL Steps</h3>
+<ol type="1">
+<li><strong>Dataset profiling and documentation</strong>
+<ul>
+<li>Create data model documentation, sample data, data dictionaries, code lists, and other relevant information (23-Aug)</li>
+<li>Execute database profiling scan (WhiteRabbit) on source database</li>
+<li>Prepare mapping approach/documents based on scan reports from database profiling scan</li>
+</ul></li>
+<li><strong>Generation of the ETL Design</strong>
+<ul>
+<li>Mapping workshop with all relevant parties to:
+<ol type="1">
+<li>Understand the source</li>
+<li>Define the scope of source data to be transformed</li>
+<li>Define acceptance criteria for OMOP output</li>
+</ol>
+<ul>
+<li>Output: draft mapping document</li>
+</ul></li>
+<li>Finalize mapping document:
+<ul>
+<li>Integrate all notes/documentation from workshop</li>
+<li>Work through mappings and verify, update, fill in gaps</li>
+<li>Meetings/emails with data contact/technical contact (TC) as needed</li>
+</ul></li>
+</ul></li>
+<li><strong>Source Data Integrations and Semantic Mapping</strong>
+<ul>
+<li>Source Code mapping:
+<ul>
+<li>Identify which codes are already mapped to standard vocabulary</li>
+<li>Identify code types for codes that need to be mapped</li>
+<li>Translation of code description/phrases to English, if/as needed</li>
+<li>Create proposed code mappings</li>
+</ul></li>
+<li>Generate mappings for data coming out of flowsheets (together with consortium)</li>
+<li>Review/approval of code mappings, often done by medical experts affiliated with Data Owner (DO).</li>
+<li>Identify medical imaging available and define mappings to Imaging Extension</li>
+<li>Identify waveform data available and map using consortium-defined guidelines</li>
+<li>Use OHNLP to extract OMOP data from unstructured sources</li>
+</ul></li>
+<li><strong>Technical architecture design</strong>
+<ul>
+<li>Continuous Integration, Continuous Deployment (CI/CD):
+<ul>
+<li>Decide on ETL dev/deployment flow</li>
+<li>Put version control mechanisms in place</li>
+</ul></li>
+<li>OHDSI Ecosystem:
+<ul>
+<li>Evaluate infrastructure needed</li>
+<li>Create infrastructure design documentation</li>
+</ul></li>
+</ul></li>
+<li><strong>Technical ETL Development</strong>
+<ul>
+<li>Implement ETL (Preferred Language/Structure?)</li>
+<li>Update ETL based on testing/QA/feedback (8, 9)</li>
+</ul></li>
+<li><strong>Setting up of Infrastructure</strong>
+<ul>
+<li>Deploy core servers and associated services based on infrastructure design in (4)</li>
+</ul></li>
+<li><strong>Installation of the OHDSI tools</strong>
+<ul>
+<li>Install and configure all software (database server, Achilles/DQD/Ares, Atlas/WebAPI, R Studio server, HADES, notebooks/tooling related to analytics, and any other software to suit a site’s specific needs).</li>
+</ul></li>
+<li><strong>ETL Testing and Validation</strong>
+<ul>
+<li>ETL Execution:
+<ul>
+<li>Test ETL using sample/development data (with limited external data access)</li>
+<li>Test ETL using DO data (with full external data access)</li>
+<li>Verify and document QA</li>
+<li>Submit Achilles/DQD/AresIndexer results to central location regularly</li>
+</ul></li>
+<li>ETL Development Planning and Management:
+<ul>
+<li>Review ETL testing and progress (TCs/meetings)</li>
+</ul></li>
+</ul></li>
+<li><strong>Data Quality Assessment</strong>
+<ul>
+<li>QA/Acceptance testing:
+<ul>
+<li>Evaluate accuracy and completeness of mapping</li>
+<li>Review and approval by DO</li>
+</ul></li>
+</ul></li>
+<li><strong>Documentation</strong>
+<ul>
+<li>Mapping Documentation and Themis Checks</li>
+<li>Transformation/Technical Documentation</li>
+</ul></li>
+<li><strong>Project Management Througout</strong>
+<ul>
+<li>Organization of tasks, milestones, and follow-up</li>
+</ul></li>
+</ol>
+</section>
+<section id="ohdsi-resources" class="level3">
+<h3 class="anchored" data-anchor-id="ohdsi-resources">OHDSI Resources</h3>
+<p>Hello! Please familiarize yourself with the following tools and resources which will help you throughout this course and your OHDSI journey.</p>
+<p>Check out the <a href="https://forums.ohdsi.org/"><strong>OHDSI Forums</strong></a> <em>Introduce yourself on the “Welcome to OHDSI” thread.</em></p>
+<p>Bookmark <a href="https://ohdsi.github.io/TheBookOfOhdsi/"><strong>The Book of OHDSI</strong></a></p>
+<p>Check out <a href="https://ohdsi.github.io/CommonDataModel/faq.html"><strong>OHOP CDM FAQ</strong></a></p>
+<p>Join the OHDSI <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=lAAPoyCRq0q6TOVQkCOy1ZyG6Ud_r2tKuS0HcGnqiQZUQ05MOU9BSzEwOThZVjNQVVFGTDNZRENONiQlQCN0PWcu"><strong>Microsoft Teams</strong></a> environment.</p>
+<p>Check out the <a href="https://physionet.org/content/mimic-iv-demo-omop/0.9/1_omop_data_csv/"><strong>MIMIC-IV demo data set</strong></a> in OMOP CDM format!</p>
+<p>Register with <a href="https://academy.ehden.eu/"><strong>EHDEN Academy</strong></a></p>
+<p>Visit the <a href="https://atlas-demo.ohdsi.org/"><strong>Atlas Demo</strong></a> and <a href="https://athena.ohdsi.org/search-terms/start"><strong>Athena</strong></a>.</p>
+<p>Bookmark the <a href="https://youtube.com/playlist?list=PLpzbqK7kvfeXRQktX0PV-cRpb3EFA2e7Z"><strong>OHDSI YouTube tutorials and workshops</strong></a></p>
+<p>Visit the <a href="https://dash.ohdsi.org/"><strong>OHDSI Community Dashboard</strong></a></p>
+<p>Bookmark <a href="https://ohdsi.github.io/CommonDataModel/index.html"><strong>OMOP Common Data Model (ohdsi.github.io)</strong></a></p>
+<p><a href="https://docs.github.com/en/get-started/quickstart/hello-world"><strong>Learn about GitHub</strong></a> if you don’t already know.</p>
+<p>Plan to attend an <a href="https://ohdsi.org/community-calls/"><strong>OHDSI Community call</strong></a></p>
+<p>Learn about OHDSI <a href="https://ohdsi.org/upcoming-working-group-calls/"><strong>Workgroups</strong></a></p>
+<p>Follow OHDSI on social media: <a href="https://twitter.com/OHDSI"><strong>Twitter</strong></a> <a href="https://www.linkedin.com/company/ohdsi"><strong>LinkedIn</strong></a></p>
+<p><a href="https://ohdsi.org/subscribe-to-our-newsletter/"><strong>Subscribe</strong></a> to the OHDSI Newsletter</p>
+<p>Learn about past and <a href="https://ohdsi.org/2023-ohdsi-events/"><strong>upcoming OHDSI events</strong></a></p>
+<p>Learn about OHDSI <a href="https://ohdsi.org/software-tools/"><strong>software</strong></a></p>
+<p>Look up individual concepts in <a href="https://athena.ohdsi.org/">Athena</a></p>
+<p>Check out useful OHDSI-related documentation here: <a href="https://support.researchallofus.org/hc/en-us/articles/360039585391-How-the-Observational-Medical-Outcomes-Partnership-OMOP-vocabulary-are-structured">NIH ALL of US OMOP Documentation</a></p>
+<div style="text-align: right">
+<a href="#table-of-contents">Back to Table of Contents</a>
+</div>
+<p>Special Topic: Cinical Registries Using OHDSI</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://youtu.be/DPatSxFkIpI?si=VOqE4VTlzIcxuWdP"><img src="http://img.youtube.com/vi/DPatSxFkIpI/0.jpg" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">OHDSI and Clinical Registries: Sanity for Health Systems (Aug.&nbsp;22 Community Call)</figcaption>
+</figure>
+</div>
+<p><a href="https://www.ohdsi.org/wp-content/uploads/2022/09/OHDSI-Clinical_Registries.pdf">Clinical Registries in OHDSI - September 2022</a></p>
+</section>
+<section id="recommended-trainings" class="level3">
+<h3 class="anchored" data-anchor-id="recommended-trainings">Recommended Trainings</h3>
+<p>OHDSI Community <strong>Broadsea3.0</strong><br>
+By: Lee Evans<br>
+<a href="https://youtu.be/CNlsZzY7VrM"><img src="https://img.youtube.com/vi/CNlsZzY7VrM/0.jpg" class="img-fluid" alt="Broadsea 3.0"></a></p>
+<div style="text-align: right">
+<a href="#table-of-contents">Back to Table of Contents</a>
+</div>
+<p>Tufts Bridge2AI Standards Module - <strong>June 15, 2023:</strong><br>
+<strong>Data Quality Dashboard</strong><br>
+By: Jared Houghtaling<br>
+<a href="https://youtu.be/O2L1x0Sv3lc"><img src="https://img.youtube.com/vi/O2L1x0Sv3lc/0.jpg" class="img-fluid" alt="Data Quality Dashboard"></a></p>
+<ul>
+<li><p><strong>July 6, 2023:</strong><br>
+<strong>Data Quality Dashboard output demo</strong><br>
+By: Jared Houghtaling<br>
+<a href="https://youtu.be/qYDq5-dg-io"><img src="https://img.youtube.com/vi/qYDq5-dg-io/0.jpg" class="img-fluid" alt="Data Quality Dashboard output demo"></a></p></li>
+<li><p><strong>July 13, 2023:</strong><br>
+<strong>Achilles output demo</strong><br>
+By: Jared Houghtaling<br>
+<a href="https://youtu.be/bIRQVgcnAwI"><img src="https://img.youtube.com/vi/bIRQVgcnAwI/0.jpg" class="img-fluid" alt="Achilles output demo"></a></p></li>
+<li><p><strong>July 27, 2023:</strong><br>
+<strong>Flowsheet follow-up</strong><br>
+By: Polina Talapova &amp; Jared Houghtaling<br>
+<a href="https://youtu.be/3cTT2XJZslI"><img src="https://img.youtube.com/vi/3cTT2XJZslI/0.jpg" class="img-fluid" alt="Flowsheet follow-up"></a></p></li>
+<li><p><strong>August 3, 2023:</strong><br>
+<strong>OMOP Standardized Vocabularies - Part 1</strong><br>
+By: Jared Houghtaling and Polina Talapova<br>
+<a href="https://youtu.be/4xnH7-oJxyo"><img src="https://img.youtube.com/vi/4xnH7-oJxyo/0.jpg" class="img-fluid" alt="OMOP Standardized Vocabularies - Part 1"></a></p></li>
+<li><p><strong>August 17, 2023:</strong><br>
+<strong>OMOP Standardized Vocabularies - Part 2</strong><br>
+By: Polina Talapova<br>
+<a href="https://youtu.be/1J7ISUASx6k"><img src="https://img.youtube.com/vi/1J7ISUASx6k/0.jpg" class="img-fluid" alt="OMOP Standardized Vocabularies - Part 2"></a></p></li>
+<li><p><strong>August 24, 2023:</strong><br>
+<strong>How to download and set-up a DDL (Demo)</strong><br>
+By: Jared Houghtaling<br>
+<a href="https://youtu.be/x9W3sa1xGoQ"><img src="https://img.youtube.com/vi/x9W3sa1xGoQ/0.jpg" class="img-fluid" alt="How to download and set-up a DDL (Demo)"></a></p></li>
+<li><p><strong>August 31, 2023:</strong><br>
+<strong>Demo of WhiteRabbit and RabbitInAHat</strong><br>
+By: Jared Houghtaling<br>
+<a href="https://youtu.be/gu1fQVwkBo8"><img src="https://img.youtube.com/vi/gu1fQVwkBo8/0.jpg" class="img-fluid" alt="Demo of WhiteRabbit and RabbitInAHat"></a></p></li>
+<li><p><strong>September 7, 2023:</strong><br>
+<strong>ARES usefulness for ETL at Tufts</strong><br>
+By: Jared Houghtaling<br>
+<a href="https://youtu.be/Czox3WT1pDM"><img src="https://img.youtube.com/vi/Czox3WT1pDM/0.jpg" class="img-fluid" alt="ARES usefulness for ETL at Tufts"></a></p></li>
+<li><p><strong>September 14, 2023:</strong><br>
+<strong>Google form introduction for site progress tracking</strong><br>
+By: Jared Houghtaling<br>
+<a href="https://youtu.be/ntZwikqhIcM"><img src="https://img.youtube.com/vi/ntZwikqhIcM/0.jpg" class="img-fluid" alt="Google form introduction for site progress tracking"></a></p></li>
+<li><p><strong>September 21, 2023:</strong><br>
+<strong>Sample ETL Process</strong><br>
+By: Jared Houghtaling<br>
+<a href="https://youtu.be/uX289BrzXM4"><img src="https://img.youtube.com/vi/uX289BrzXM4/0.jpg" class="img-fluid" alt="Sample ETL Process"></a></p></li>
+</ul>
+<p><strong>October 12, 2023:</strong><br>
+<strong>Google Form for Site Progress Tracking</strong><br>
+With Jared Houghtaling and Andrew Williams<br>
+<a href="https://youtu.be/oTP6ISo8FWc"><img src="https://img.youtube.com/vi/oTP6ISo8FWc/0.jpg" class="img-fluid" alt="Google Form for Site Progress Tracking"></a></p>
+<ul>
+<li><p><strong>October 26, 2023:</strong><br>
+<strong>Review and Prioritization of DQD Results, and Discussion of DQD Issue Severity</strong><br>
+With Jared Houghtaling<br>
+<a href="https://youtu.be/dJr5tkm-Ex4"><img src="https://img.youtube.com/vi/dJr5tkm-Ex4/0.jpg" class="img-fluid" alt="Review and Prioritization of DQD Results, and Discussion of DQD Issue Severity"></a></p></li>
+<li><p><strong>November 2, 2023:</strong><br>
+<strong>Principles of Mapping and Vocab Gaps Identification</strong><br>
+With Polina Talapova<br>
+<a href="https://youtu.be/jOKzb3x6hmo"><img src="https://img.youtube.com/vi/jOKzb3x6hmo/0.jpg" class="img-fluid" alt="Principles of Mapping and Vocab Gaps Identification"></a></p></li>
+<li><p><strong>November 9, 2023:</strong><br>
+<strong>Usagi &amp; STCM Demo</strong><br>
+With Polina Talapova &amp; Jared Houghtailing<br>
+<a href="https://youtu.be/hNhph-elrp4"><img src="https://img.youtube.com/vi/hNhph-elrp4/0.jpg" class="img-fluid" alt="Usagi &amp; STCM Demo"></a></p></li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

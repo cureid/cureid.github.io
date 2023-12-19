@@ -116,10 +116,22 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#places-to-connect" id="toc-places-to-connect" class="nav-link" data-scroll-target="#places-to-connect"><u>Places to Connect</u></a></li>
   </ul></li>
   <li><a href="#omop-cohort-creation-and-de-identification-guide" id="toc-omop-cohort-creation-and-de-identification-guide" class="nav-link" data-scroll-target="#omop-cohort-creation-and-de-identification-guide">OMOP Cohort Creation and De-identification Guide</a></li>
+  <li><a href="#cure-id-profile-scripts-output-interpretation" id="toc-cure-id-profile-scripts-output-interpretation" class="nav-link" data-scroll-target="#cure-id-profile-scripts-output-interpretation">CURE ID Profile Scripts – Output &amp; Interpretation</a>
+  <ul class="collapse">
+  <li><a href="#a_condition_profile.sql" id="toc-a_condition_profile.sql" class="nav-link" data-scroll-target="#a_condition_profile.sql">07_A_condition_profile.sql</a></li>
+  <li><a href="#b_measurement_profile.sql" id="toc-b_measurement_profile.sql" class="nav-link" data-scroll-target="#b_measurement_profile.sql">07_B_measurement_profile.sql</a></li>
+  <li><a href="#c_drug_exposure_profile.sql" id="toc-c_drug_exposure_profile.sql" class="nav-link" data-scroll-target="#c_drug_exposure_profile.sql">07_C_drug_exposure_profile.sql</a></li>
+  <li><a href="#e_device_profile.sql" id="toc-e_device_profile.sql" class="nav-link" data-scroll-target="#e_device_profile.sql">07_E_device_profile.sql</a></li>
+  </ul></li>
   <li><a href="#omop-table-and-field-basics" id="toc-omop-table-and-field-basics" class="nav-link" data-scroll-target="#omop-table-and-field-basics">OMOP Table and Field Basics</a></li>
   <li><a href="#cure-id-concept-mapping-support" id="toc-cure-id-concept-mapping-support" class="nav-link" data-scroll-target="#cure-id-concept-mapping-support">Cure ID Concept Mapping Support</a></li>
   <li><a href="#identifying-oxygen-devices-in-epicclarity" id="toc-identifying-oxygen-devices-in-epicclarity" class="nav-link" data-scroll-target="#identifying-oxygen-devices-in-epicclarity">Identifying Oxygen Devices in Epic/Clarity</a></li>
-  <li><a href="#geocoding-and-integrating-sdoh-data" id="toc-geocoding-and-integrating-sdoh-data" class="nav-link" data-scroll-target="#geocoding-and-integrating-sdoh-data">Geocoding and Integrating SDOH Data</a></li>
+  <li><a href="#geocoding-and-integrating-sdoh-data" id="toc-geocoding-and-integrating-sdoh-data" class="nav-link" data-scroll-target="#geocoding-and-integrating-sdoh-data">Geocoding and Integrating SDOH Data</a>
+  <ul class="collapse">
+  <li><a href="#geocoding" id="toc-geocoding" class="nav-link" data-scroll-target="#geocoding">Geocoding</a></li>
+  <li><a href="#area-deprivation-index" id="toc-area-deprivation-index" class="nav-link" data-scroll-target="#area-deprivation-index">Area Deprivation Index</a></li>
+  <li><a href="#adi-as-an-ohdsi-concept" id="toc-adi-as-an-ohdsi-concept" class="nav-link" data-scroll-target="#adi-as-an-ohdsi-concept">ADI as an OHDSI Concept</a></li>
+  </ul></li>
   <li><a href="#ohdsi-tool-suite" id="toc-ohdsi-tool-suite" class="nav-link" data-scroll-target="#ohdsi-tool-suite">OHDSI Tool Suite</a></li>
   <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices">Best Practices</a></li>
   <li><a href="#manuscripts" id="toc-manuscripts" class="nav-link" data-scroll-target="#manuscripts">Manuscripts</a></li>
@@ -130,7 +142,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#dboyce-training-resources" id="toc-dboyce-training-resources" class="nav-link" data-scroll-target="#dboyce-training-resources">DBoyce Training Resources</a>
   <ul class="collapse">
   <li><a href="#omop-cdm-basic-data-dictionary" id="toc-omop-cdm-basic-data-dictionary" class="nav-link" data-scroll-target="#omop-cdm-basic-data-dictionary">OMOP CDM Basic Data Dictionary</a></li>
-  <li><a href="#projects-best-suited-for-observational-research-and-ohdsi-network-studies" id="toc-projects-best-suited-for-observational-research-and-ohdsi-network-studies" class="nav-link" data-scroll-target="#projects-best-suited-for-observational-research-and-ohdsi-network-studies">Projects Best Suited for Observational Research and OHDSI Network Studies</a></li>
   <li><a href="#analytic-use-cases-and-examples" id="toc-analytic-use-cases-and-examples" class="nav-link" data-scroll-target="#analytic-use-cases-and-examples">Analytic Use Cases and Examples</a></li>
   <li><a href="#data-content-ontology" id="toc-data-content-ontology" class="nav-link" data-scroll-target="#data-content-ontology">Data Content Ontology</a></li>
   <li><a href="#current-cdm" id="toc-current-cdm" class="nav-link" data-scroll-target="#current-cdm">Current CDM</a></li>
@@ -161,7 +172,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">December 8, 2023</p>
+      <p class="date-modified">December 19, 2023</p>
     </div>
   </div>
     
@@ -474,6 +485,59 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Description</strong>: Device counts are calculated per patient and are aggregated by parent concepts for each device concept present in the final OMOP Device Exposure table.</p>
 </section>
 </section>
+<section id="cure-id-profile-scripts-output-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="cure-id-profile-scripts-output-interpretation">CURE ID Profile Scripts – Output &amp; Interpretation</h2>
+<p>This section provides synthetic examples of the output generated from the CURE ID person measurement drug exposure and device profile SQL scripts as well as examples of how to interpret the output from each script.</p>
+<section id="a_condition_profile.sql" class="level3">
+<h3 class="anchored" data-anchor-id="a_condition_profile.sql">07_A_condition_profile.sql</h3>
+<p>Generates a table showing condition prevalence in cohort by individual condition concept.</p>
+<p>Example Interpretation</p>
+<p>In the highlighted row, the table shows that 6499 patients in the cohort have a recorded diagnosis of hypertension, representing 58% of the total cohort.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Profile_script_7A.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Profile_script_7A</figcaption>
+</figure>
+</div>
+</section>
+<section id="b_measurement_profile.sql" class="level3">
+<h3 class="anchored" data-anchor-id="b_measurement_profile.sql">07_B_measurement_profile.sql</h3>
+<p>Generates a table which includes the measurement concepts included in the cohort and their names.</p>
+<p>Example Interpretation</p>
+<p>The highlighted row shows the distribution of the number of times heart rate was measured per patient in the cohort. 25% of the patients had 17 heart rate measurements or less. 50% of patients had at least 34 heart rate measurements recorded. 75% of patients had at most, 72 heart rate measurements recorded. 95% of patients had at most, 398 heart rate measurements recorded. The four columns can also be interpreted as the median for the bottom 50% (percentile_25), overall median (median), median for the top 50% (percentile_75), and the median for the top 10% (percentile_95) – in terms of how many times the measurement was taken for each patient in the cohort.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Profile_script_7B.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Profile_script_7B</figcaption>
+</figure>
+</div>
+</section>
+<section id="c_drug_exposure_profile.sql" class="level3">
+<h3 class="anchored" data-anchor-id="c_drug_exposure_profile.sql">07_C_drug_exposure_profile.sql</h3>
+<p>Generates a table of all drugs given in the cohort.</p>
+<p>Example Interpretation</p>
+<p>The highlighted row shows that acetaminophen was administered to 7,937 total patients which represents 68% of the patients in the cohort. Acetaminophen was administered an average of 2 times per patient with the highest recorded value of 26 administrations for a single patient.<br>
+It is important to note that these are <em>ingredients</em> - which is why sodium chloride is the most frequent “drug” because most IV drugs contain sodium chloride as an ingredient.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Profile_script_7C.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Profile_script_7C</figcaption>
+</figure>
+</div>
+</section>
+<section id="e_device_profile.sql" class="level3">
+<h3 class="anchored" data-anchor-id="e_device_profile.sql">07_E_device_profile.sql</h3>
+<p>Generates a table which includes the device concepts included in the cohort and their counts.</p>
+<p>Example Interpretation</p>
+<p>The highlighted row shows that an oxygen nasal cannula device was used for 9,238 patients in the cohort. That patients count represents 44% of the total cohort. Use of this device was recorded an average of 225.3 times per patient, with a maximum of 7,239 recordings for a single patient, when counting all flowsheet entries.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Profile_script_7E.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Profile_script_7E</figcaption>
+</figure>
+</div>
+</section>
+</section>
 <section id="omop-table-and-field-basics" class="level2">
 <h2 class="anchored" data-anchor-id="omop-table-and-field-basics">OMOP Table and Field Basics</h2>
 <p>Adapted from OHDSI CDM Site: <a href="https://ohdsi.github.io/CommonDataModel/dataModelConventions.html">Data Model Conventions</a>&nbsp;</p>
@@ -536,8 +600,27 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="geocoding-and-integrating-sdoh-data" class="level1">
 <h1>Geocoding and Integrating SDOH Data</h1>
-<p>Geocoding</p>
-<p>The primary consideration for linking geospatial data like social determinants of health and environmental risk factors with patient data is protecting PHI when geocoding patient home address and location data. Do not use web-based API services for geocoding as they require patient addresses to be sent to an external server for batch geocoding.</p>
+<p>To link geocoded addresses to the Neighborhood Atlas for getting the Area Deprivation Index (ADI) for patients in a dataset, you will typically follow these steps:</p>
+<ol type="1">
+<li>Prepare Your Dataset Patient Data: Ensure you have a dataset of patients with addresses. This data should be anonymized to protect patient privacy. Geocoding: Each address needs to be geocoded. Geocoding is the process of converting addresses into geographic coordinates (latitude and longitude).</li>
+<li>Geocoding Addresses Use a Geocoding Service: Tools like Google Maps API, ArcGIS, or OpenStreetMap can be used to geocode addresses. This will give you the precise geographic location for each address. Accuracy Check: Ensure the geocoding is accurate. Incorrect geocoding can lead to wrong ADI assignments.</li>
+<li>Understanding the Neighborhood Atlas ADI Overview: The ADI is a measure developed by the Neighborhood Atlas. It provides a ranked and searchable list of neighborhoods according to their level of disadvantage. Data Format: Understand the format of the Neighborhood Atlas data. It typically includes geographical identifiers like census tracts.</li>
+<li>Linking Geocoded Data to the Neighborhood Atlas Match Coordinates with Census Tracts: Use the geographic coordinates to determine the corresponding census tract for each patient. This can be done using GIS software like ArcGIS or QGIS. Cross-Reference with ADI Data: Once you have the census tract for each patient, cross-reference these with the Neighborhood Atlas to find the ADI for each tract.</li>
+<li>Integrating ADI into Your Dataset Add ADI to Patient Records: For each patient, add the ADI corresponding to their census tract. This step integrates socioeconomic context into your patient data.</li>
+</ol>
+<section id="geocoding" class="level3">
+<h3 class="anchored" data-anchor-id="geocoding">Geocoding</h3>
+<p>The primary consideration for linking geospatial data like social determinants of health and environmental risk factors with patient data is protecting PHI when geocoding patient home address and location data. Do not use web-based API services for geocoding as they require patient addresses to be sent to an external server for batch geocoding. Geocoding will require software that can match patient addresses to the appropriate shapefiles to determine a precise location and output latitudinal/longitudinal coordinates. Two software solutions for geocoding include: - Use ESRI ArcGIS or a similar program that can perform geocoding locally and has all appropriate shapefiles downloaded. This software is expensive, but many institutions have a license already in place. - Install geocoding software (ex: open-source, Degauss geocoder: https://www.degauss.org/geocoder) locally via manual installation or by installing a docker container.</p>
+</section>
+<section id="area-deprivation-index" class="level3">
+<h3 class="anchored" data-anchor-id="area-deprivation-index">Area Deprivation Index</h3>
+<p>The Area Deprivation Index (ADI) is based on a measure created by the Health Resources &amp; Services Administration (HRSA) over three decades ago, and has since been refined, adapted, and validated to the Census block group neighborhood level by Amy Kind, MD, PhD and her research team at the University of Wisconsin-Madison. It allows for rankings of neighborhoods by socioeconomic disadvantage in a region of interest (e.g., at the state or national level). It includes factors for the theoretical domains of income, education, employment, and housing quality. It can be used to inform health delivery and policy, especially for the most disadvantaged neighborhood groups. “Neighborhood” is defined as a Census block group.<br>
+from: https://www.neighborhoodatlas.medicine.wisc.edu/</p>
+</section>
+<section id="adi-as-an-ohdsi-concept" class="level3">
+<h3 class="anchored" data-anchor-id="adi-as-an-ohdsi-concept">ADI as an OHDSI Concept</h3>
+<p>ADI is not included as an explicit concept in any of the appropriate standard vocabularies. The OHDSI Vocabularies Team recommended that this information be included in the OMOP data as a custom concept in the Observation table. The workflow will be simply to add a line item to the concept mapping table for Area Deprivation Index like the following example: concept_id = 2000000999 concept_code = NA concept_name = Area deprivation index domain = observation vocabulary = Custom is_standard = C include_descendents = False</p>
+</section>
 </section>
 <section id="ohdsi-tool-suite" class="level1">
 <h1>OHDSI Tool Suite</h1>
@@ -673,21 +756,12 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <section id="omop-cdm-basic-data-dictionary" class="level3">
 <h3 class="anchored" data-anchor-id="omop-cdm-basic-data-dictionary">OMOP CDM Basic Data Dictionary</h3>
-For a sample interactive OMOP data dictionary, please click on the image below: <a href="https://dbjhu.github.io/OMOPDD.html"><img src="https://dbjhu.github.io/DDthumbnail.png" class="img-fluid" alt="OMOP Data Dictionary Thumbnail"></a>
+<p>For a sample interactive OMOP data dictionary, please click on the image below: <a href="https://dbjhu.github.io/OMOPDD.html"><img src="https://dbjhu.github.io/DDthumbnail.png" class="img-fluid" alt="OMOP Data Dictionary Thumbnail"></a></p>
 <div style="text-align: right">
-<a href="#table-of-contents">Back to Table of Contents</a>
-</div>
-</section>
-<section id="projects-best-suited-for-observational-research-and-ohdsi-network-studies" class="level3">
-<h3 class="anchored" data-anchor-id="projects-best-suited-for-observational-research-and-ohdsi-network-studies">Projects Best Suited for Observational Research and OHDSI Network Studies</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="AnalyticUseCases.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Source: https://www.ohdsi.org/wp-content/uploads/2023/01/SOS-challenge-intro-24jan2023.pdf</figcaption>
-</figure>
+<p><a href="#table-of-contents">Back to Table of Contents</a></p>
 </div>
 <div style="text-align: right">
-<a href="#table-of-contents">Back to Table of Contents</a>
+<p><a href="#table-of-contents">Back to Table of Contents</a></p>
 </div>
 <p>(This is the exact same table as in the image above only in Markdown)</p>
 </section>
@@ -695,10 +769,10 @@ For a sample interactive OMOP data dictionary, please click on the image below: 
 <h3 class="anchored" data-anchor-id="analytic-use-cases-and-examples">Analytic Use Cases and Examples</h3>
 <table class="table">
 <colgroup>
-<col style="width: 12%">
-<col style="width: 9%">
-<col style="width: 38%">
-<col style="width: 39%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 31%">
+<col style="width: 31%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -760,11 +834,11 @@ For a sample interactive OMOP data dictionary, please click on the image below: 
 </tbody>
 </table>
 <div style="text-align: right">
-<a href="#table-of-contents">Back to Table of Contents</a>
+<p><a href="#table-of-contents">Back to Table of Contents</a></p>
 </div>
 <p>Important Paper About Implementation of the OMOP CDM! <a href="https://doi.org/10.1093/jamia/ocad214">Erica A Voss, Clair Blacketer, Sebastiaan van Sandijk, Maxim Moinat, Michael Kallfelz, Michel van Speybroeck, Daniel Prieto-Alhambra, Martijn J Schuemie, Peter R Rijnbeek, European Health Data &amp; Evidence Network—learnings from building out a standardized international health data network, Journal of the American Medical Informatics Association, 2023;, ocad214</a></p>
 <div style="text-align: right">
-<a href="#table-of-contents">Back to Table of Contents</a>
+<p><a href="#table-of-contents">Back to Table of Contents</a></p>
 </div>
 </section>
 <section id="data-content-ontology" class="level3">
@@ -792,13 +866,13 @@ For a sample interactive OMOP data dictionary, please click on the image below: 
     ICD9("ICD9") --&gt;|Transformation to OMOP CDM| SNOMED("STANDARD&lt;br&gt;Vocabulary Concept Code&lt;br&gt;SNOMED")
     ICD10("ICD10") --&gt;|Transformation to OMOP CDM| SNOMED</code></pre>
 <div style="text-align: right">
-<a href="#table-of-contents">Back to Table of Contents</a>
+<p><a href="#table-of-contents">Back to Table of Contents</a></p>
 </div>
 <table class="table">
 <colgroup>
-<col style="width: 31%">
-<col style="width: 37%">
-<col style="width: 31%">
+<col style="width: 18%">
+<col style="width: 52%">
+<col style="width: 28%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -837,7 +911,7 @@ For a sample interactive OMOP data dictionary, please click on the image below: 
 <li><p>NDC = National Drug Code</p></li>
 <li><p>CPT = Current Procedural Terminology</p>
 <div style="text-align: right">
-<a href="#table-of-contents">Back to Table of Contents</a>
+<p><a href="#table-of-contents">Back to Table of Contents</a></p>
 </div></li>
 </ul>
 </section>
@@ -851,11 +925,11 @@ For a sample interactive OMOP data dictionary, please click on the image below: 
 </div>
 <p><em>Source: <a href="https://ohdsi.github.io/CommonDataModel/index.html">OHDSI Common Data Model</a></em></p>
 <div style="text-align: right">
-<a href="#table-of-contents">Back to Table of Contents</a>
+<p><a href="#table-of-contents">Back to Table of Contents</a></p>
 </div>
 <p><a href="https://github.com/DBJHU/DBJHU.github.io/blob/main/SelectOMOPDataDictionaryInteractivev2.html">Interactive (Select) OMOP Data Dictionary</a></p>
 <div style="text-align: right">
-<a href="#table-of-contents">Back to Table of Contents</a>
+<p><a href="#table-of-contents">Back to Table of Contents</a></p>
 </div>
 </section>
 <section id="commonly-used-cdm-tables-overview" class="level3">
@@ -912,7 +986,7 @@ For a sample interactive OMOP data dictionary, please click on the image below: 
 </tbody>
 </table>
 <div style="text-align: right">
-<a href="#table-of-contents">Back to Table of Contents</a>
+<p><a href="#table-of-contents">Back to Table of Contents</a></p>
 </div>
 </section>
 <section id="omop-data-quality" class="level3">
@@ -924,7 +998,7 @@ For a sample interactive OMOP data dictionary, please click on the image below: 
 <h3 class="anchored" data-anchor-id="etl-basics">ETL Basics</h3>
 <p>https://www.ohdsi.org/wp-content/uploads/2019/09/OMOP-Common-Data-Model-Extract-Transform-Load.pdf https://ohdsi.github.io/TheBookOfOhdsi/ExtractTransformLoad.html</p>
 <div style="text-align: right">
-<a href="#table-of-contents">Back to Table of Contents</a>
+<p><a href="#table-of-contents">Back to Table of Contents</a></p>
 </div>
 </section>
 <section id="etl-steps" class="level3">
@@ -938,7 +1012,7 @@ For a sample interactive OMOP data dictionary, please click on the image below: 
 </ul></li>
 <li><strong>Generation of the ETL Design</strong>
 <ul>
-<li>Mapping workshop with all relevant parties to:
+<li><p>Mapping workshop with all relevant parties to:</p>
 <ol type="1">
 <li>Understand the source</li>
 <li>Define the scope of source data to be transformed</li>
@@ -947,7 +1021,7 @@ For a sample interactive OMOP data dictionary, please click on the image below: 
 <ul>
 <li>Output: draft mapping document</li>
 </ul></li>
-<li>Finalize mapping document:
+<li><p>Finalize mapping document:</p>
 <ul>
 <li>Integrate all notes/documentation from workshop</li>
 <li>Work through mappings and verify, update, fill in gaps</li>
@@ -1051,7 +1125,7 @@ For a sample interactive OMOP data dictionary, please click on the image below: 
 <p>Look up individual concepts in <a href="https://athena.ohdsi.org/">Athena</a></p>
 <p>Check out useful OHDSI-related documentation here: <a href="https://support.researchallofus.org/hc/en-us/articles/360039585391-How-the-Observational-Medical-Outcomes-Partnership-OMOP-vocabulary-are-structured">NIH ALL of US OMOP Documentation</a></p>
 <div style="text-align: right">
-<a href="#table-of-contents">Back to Table of Contents</a>
+<p><a href="#table-of-contents">Back to Table of Contents</a></p>
 </div>
 <p>Special Topic: Cinical Registries Using OHDSI</p>
 <div class="quarto-figure quarto-figure-center">
@@ -1068,7 +1142,7 @@ For a sample interactive OMOP data dictionary, please click on the image below: 
 By: Lee Evans<br>
 <a href="https://youtu.be/CNlsZzY7VrM"><img src="https://img.youtube.com/vi/CNlsZzY7VrM/0.jpg" class="img-fluid" alt="Broadsea 3.0"></a></p>
 <div style="text-align: right">
-<a href="#table-of-contents">Back to Table of Contents</a>
+<p><a href="#table-of-contents">Back to Table of Contents</a></p>
 </div>
 <p>Tufts Bridge2AI Standards Module - <strong>June 15, 2023:</strong><br>
 <strong>Data Quality Dashboard</strong><br>

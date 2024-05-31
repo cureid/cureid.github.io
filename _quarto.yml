@@ -11,6 +11,8 @@ website:
         text: "Introduction"
       - href: "sop.qmd"
         text: "SOP"
+      - href: "support.qmd"
+        text: "Support"
       - href: "about.qmd"
         text: "About"
 

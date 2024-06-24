@@ -1,11 +1,16 @@
 ---
 title: "C-PATH / JH guide to getting started with OMOP for CURE ID"
+date-modified: last-modified
 bibliography: references.bib
 ---
 
 ## Welcome
 
-This site is designed to provide guidance, scripts and resources for sites transitioning data to OMOP common data model as part of [CURE ID](https://cure.ncats.io/home).
+Test
+
+This site is designed to provide guidance, scripts and resources for sites transitioning data to OMOP common data model as part of CURE ID.
+
+CURE ID is a platform designed and developed by the US Food and Drug Administration (FDA) and the National Institutes of Health (NIH) National Center for Translational Sciences (NCATS) to capture real world data (RWD) about how existing drugs are used in new ways (e.g., drug repurposing) to treat diseases of high unmet clinical need. The documentation on this site is part of a project funded by the US Department of Health and Human Services (HHS) Assistant Secretary for Planning and Evaluation (ASPE)'s Patient-Centered Outcomes Research Trust Fund (under Interagency Agreement #75F40121S35006) to develop and disseminate tools facilitating the extraction of RWD from the electronic health record (EHR).
 
 ## Introduction
 
@@ -19,11 +24,18 @@ A common data model (CDM) allows multiple health care systems with their individ
 
 #### What is an ETL?
 
-ETL stands for Extract, Transform, and Load. Essentially this is the process of mapping data from one system to another.
+ETL stands for Extract, Transform, and Load. Essentially this is the process of mapping data from one system to another. Please see \[The Book of OHDSI, Chapter 6\] (https://ohdsi.github.io/TheBookOfOhdsi/ExtractTransformLoad.html).
 
 ## Getting started
 
 The code for the CURE ID project is hosted on [GitHub](https://github.com/). GitHub is a web-based platform that allows developers to host, review, and collaborate on code repositories. It is widely used for version control and source code management, and it provides features such as issue tracking, wikis, and project management tools to facilitate team collaboration. 
+
+The repository containing the code and concept sets can be accessed at [OHDSI/CureIdRegistry](https://github.com/OHDSI/CureIdRegistry) There are four branches within the repository that differ only in the clinical variables included in the cohort curation scripts. Be sure to select the appropriate branch based on individual health system data and ETL capacity:
+
+1.  Main branch: fundamental set of variables for Registry submission - demographics, comorbidities, vitals, labs, medications, vaccinations, oxygen devices, viral assays, and COVID complications.
+2.  Refresh Basic: the main branch variables with additional concepts to allow for Charlson Comorbidity Index calculation
+3.  Refresh Advanced: the refresh basic branch variables with additional concepts for Area Deprivation Index calculation (this branch requires Geocoding patient addresses to determine Census Blocks)
+4.  Main CDM v5.3: this is the same set of variables included in the main branch but with cohort curation scripts written for the OMOP CDM version 5.3 (there are four fields names that changed from version 5.3 to 5.4)
 
 ## CURE ID technical support checklist
 
@@ -47,6 +59,78 @@ The code for the CURE ID project is hosted on [GitHub](https://github.com/). Git
 16. Any caveats in the data documented in Data Export Cover Sheet
 17. Data transfer arrangements made by contacting Smitty Heavner
 
+## OMOP Extract, Transform, and Load Guide
+
+### [OHDSI ETL Resources]{.underline}
+
+-   [OHDSI Wiki: ETL Creation Best Practices](https://www.ohdsi.org/web/wiki/doku.php?id=documentation:etl_best_practices)
+-   [Book of OHDSI (Ch. 6): Extract Transform Load](Book%20of%20OHDSI%20-%20Ch.6%20Extract%20Transform%20Load)
+-   [EHDEN Academy: OMOP CDM and Standardised Vocabularies](https://academy.ehden.eu/enrol/index.php?id=4)
+-   [EHDEN Academy: Extract, Transform and Load](https://academy.ehden.eu/course/view.php?id=7)
+-   [EHDEN Academy: Introduction to Usagi & Code Mappings for an ETL](https://academy.ehden.eu/enrol/index.php?id=18)
+
+### [OHDSI ETL Steps]{.underline}
+
+1.  **Find your people.**
+
+    a.  Assemble ETL team: both data experts, medical experts, CDM/vocabulary experts
+    b.  Assign persons with medical knowledge to create code mappings
+    c.  Assign persons with technical knowledge to implement the ETL
+    d.  Schedule regular meetings for quality control maintenance
+
+2.  **Understand your data.**
+
+    a.  Take inventory of source data (tools: [White Rabbit](https://github.com/OHDSI/WhiteRabbit))
+        i.  List of tables in database
+        ii. List fields in each table
+        iii. List distinct values of each field
+        iv. Summarize the frequency of each value of each field.
+    b.  Define relationships between source data tables and fields (tools: [Rabbit-in-a-Hat](https://github.com/OHDSI/WhiteRabbit))
+        i.  Record both relationship definition decisions and reasoning behind these decisions
+    c.  Determine standardized vocabularies that already exist in your source data (ICD-10, CPT, HCPCS, LOINC, etc.)
+        i.  Many commonly used standardized coding systems have already been mapped to the OMOP vocabulary -- utilize the work done by others across the OHDSI community to accelerate the process of mapping your data systems to OMOP.
+    d.  Determine the coding systems in your source data that are proprietary or not already mapped to OMOP (proprietary patient/visit identifiers, account numbers, charge codes, etc.)
+
+3.  **Map your codes to OMOP concepts.**
+
+    a.  Summarize the frequency of each code from your source data code sets that will require mapping to OMOP concepts.
+    b.  Create your source data to OMOP mapping. (tools: [Usagi](https://github.com/OHDSI/Usagi))
+        i.  Assign this task to the ETL team members with appropriate medical knowledge to discern which codes are most synonymous based on their descriptions. Medical knowledge is key for this step as semantic understanding of clinical descriptions is required to make decisions on mapping source data concepts to OMOP concepts.
+        ii. Start with the most frequently used codes and determine your threshold of code frequency to include in the mapping.
+        iii. Focus on a particular project or clinical domain to limit the scope of data needed for capture and conversion to OMOP.
+        iv. Utilize the Usagi tool for mapping suggestions and searching based on similarity of code descriptions.
+
+4.  **OMOPify your data!**
+
+    a.  Determine the technology and software used or approved at your site for data storage, querying, and transfer. Determine the tools and technologies that team members and internal staff have expertise in.
+    b.  Generate the OMOP DDLs
+        i.  Using R: https://github.com/OHDSI/CommonDataModel
+        ii. Using SQL: https://github.com/OHDSI/CommonDataModel/tree/v5.4.0/inst/ddl/5.4
+    c.  Implement the ETL.
+        i.  Assign this task to the ETL team members with technical knowledge and permission for accessing and extracting source data and writing to a database.
+        ii. Many tools and technologies can be used for this step. Utilize the existing tools, technologies, and expertise of your ETL team and internal staff.
+
+5.  **Evaluate your data.**
+
+    a.  Involve everyone in the evaluation and maintenance of ETL and data quality.
+    b.  Review the ETL design documentation, computer code used in implementation, and concept mappings
+    c.  Perform a manual audit using a sample of patients from both source data and derived OMOP data
+    d.  Compare summary level counts of key fields between source data and OMOP derived data. (tools: Achilles)
+
+**★ Ask for help along the way!**
+
+The CURE ID support team is here to help you. We also encourage you to connect with the OHDSI community to find others with experience, expertise, and guidance for each step of your ETL to OMOP journey. The open, collaborative community of OHDSI is the most powerful tool at your disposal. Use it (us)!
+
+### [Places to Connect]{.underline}
+
+-   OHDSI.org: https://www.ohdsi.org/
+
+-   OHDSI Wiki: https://www.ohdsi.org/web/wiki/doku.php
+
+-   OHDSI Forums: https://forums.ohdsi.org/
+
+-   OHDSI Workgroups: https://www.ohdsi.org/workgroups/
+
 ## OMOP Cohort Creation and De-identification Guide
 
 ```{r, echo=FALSE}
@@ -57,31 +141,25 @@ The following scripts are to be run on a site's full OMOP dataset in order to pr
 
 **Instructions:** Replace the database name and schema in each of these scripts with your own, then run the cohort creation and deidentification scripts in the following sequence:
 
-01 -- Cohort Creation\...\...\...\...\...\...\...\...\... (Filename: [01_CURE_ID_Cohort.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/01_CURE_ID_Cohort.sql))
+### [00 -- Concept Table Creation Script]{.underline}
 
-02 -- Generate CURE ID Tables\...\...\...\... (Filename: [02_CURE_ID_All_Tables.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/02_CURE_ID_All_Tables.sql))
+**Filename**: [00_CURE_ID_create_concept_table.sql)](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/00_CURE_ID_create_concept_table.sql)
 
-03 -- Deidentify Rare Conditions.......... (Filename: [03_CURE_ID_replace_rare_conditions_with_parents.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/03_CURE_ID_replace_rare_conditions_with_parents.sql))
+**Purpose**: This script creates a table of standard concepts required for the CureID Registry project. It is used in conjunction with CONCEPT_ANCESTOR table in 02_CURE_ID_All_Tables.sql script.
 
-04 -- Generate OMOP Tables.............. (Filename: [04_DE_ID_CDM_Table_ddl.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/04_DE_ID_CDM_Table_ddl.sql))
+**Description**: Fields particularly important to the process are "is_standard" and "include_descendants".
 
-05 -- Remove Identifiers...................... (Filename: [05_DE_ID_script.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/05_DE_ID_script.sql))
+"is_standard" determines the standardization of the concept, either: a "C", "S", or "N" -- C is for classification. This concept will not be used, but it may have useable descendants -- S is for Standard. These codes will be used. They may or may not have descendants -- N is Non-standard. These codes will not be used. If they have descendants
 
-06 -- Run Data Quality Checks............. (Filename: [06_DE_ID_Quality_Checks.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/06_DE_ID_Quality_Checks.sql))
+"include_descendants" determines whether the script should look for descendents -- Values are either TRUE or FALSE
 
-07-A -- Profile Conditions\...\...\...\...\...\...\... (Filename: [07_A_condition_profile.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/07_A_condition_profile.sql))
+They will be used in 02_CURE_ID_All_Tables.sql in the FROM clauses: Measurement example: INNER JOIN omop.CONCEPT_ANCESTOR ON descendant_concept_id = m.measurement_concept_id INNER JOIN [Results].[cure_id_concepts] ON ancestor_concept_id = concept_id WHERE domain = 'Measurement' AND (include_descendants = 'TRUE' OR ancestor_concept_id = descendant_concept_id)
 
-07-B -- Profile Measurements............. (Filename: [07_B_measurement_profile.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/07_B_measurement_profile.sql))
+If "include_descendants" is either 'TRUE' or if the ancestor_concept_id is the same as descendant_concept_id, the concept will be used. The "is_standard" field is informational only and does not participate in the script.
 
-07-C -- Profile Drug Exposure.............. (Filename: [07_C_drug_exposure_profile.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/07_C_drug_exposure_profile.sql))
+**Dependencies**: None
 
-07-D -- Profile Unmapped Drugs\...\...\... (Filename: [07_D_review_unmapped_drugs.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/07_D_review_unmapped_drugs.sql))
-
-07-D -- Profile Devices......................... (Filename: [07_E_device_profile.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/07_E_device_profile.sql))
-
-**OMOP Cohort Creation and Deidentification Process:**
-
-#### [01 -- Cohort Creation Script]{.underline}
+### [01 -- Cohort Creation Script]{.underline}
 
 **Filename**: [01_CURE_ID_Cohort.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/01_CURE_ID_Cohort.sql)
 
@@ -89,29 +167,31 @@ The following scripts are to be run on a site's full OMOP dataset in order to pr
 
 **Description**: This SQL script creates a cohort of COVID-positive hospitalized patients based on specific criteria. The script performs several steps to identify and filter the patients before finally creating the cohort table. The script sets the context to use a specific database, but the actual name of the database is meant to be provided by the user.
 
+**Dependencies**: None
+
 **Steps**:
 
-1)      Create cohort table.
+1. Create cohort table.
 
-2)      Identify patients (inpatient and outpatient) with covid positive lab results
+2. Identify patients (inpatient and outpatient) with covid positive lab results
 
-a.       Use OMOP concepts that represent the LOINC codes for SARS-COV-2 nucleic acid test
+   - Use OMOP concepts that represent the LOINC codes for SARS-COV-2 nucleic acid test
 
-b.       The concept ids here represent LOINC or SNOMED codes for standard ways to code a lab that is positive.
+   - The concept ids here represent LOINC or SNOMED codes for standard ways to code a lab that is positive.
 
-3)      Identify the first positive covid test per patient (after January 1, 2020).
+3. Identify the first positive covid test per patient (after January 1, 2020).
 
-4)      Limit to covid-positive patients with inpatient encounters.
+4. Limit to covid-positive patients with inpatient encounters.
 
-5)      Apply all inclusion/exclusion criteria to identify all patients hospitalized with symptomatic covid-19 up to 21 days after a positive SARS-CoV-2 test or up to 7 days prior to a positive SARS-CoV-2 test
+5. Apply all inclusion/exclusion criteria to identify all patients hospitalized with symptomatic covid-19 up to 21 days after a positive SARS-CoV-2 test or up to 7 days prior to a positive SARS-CoV-2 test
 
-6)      Find the closest inpatient encounter to first positive SARS-COV-2 test (for patients hospitalized more than once)
+6. Find the closest inpatient encounter to first positive SARS-COV-2 test (for patients hospitalized more than once)
 
-7)      Account for edge cases where patients have two hospitalizations same number of absolute days from SARS-COV-2 test (Ex: Patient hospitalized separately 3 days before and 3 days after SARS-COV-2 test)
+7. Account for edge cases where patients have two hospitalizations same number of absolute days from SARS-COV-2 test (Ex: Patient hospitalized separately 3 days before and 3 days after SARS-COV-2 test)
 
-8)      Create the cohort by adding on birth date and death date
+8. Create the cohort by adding on birth date and death date
 
-#### [02 -- CURE ID Tables Script]{.underline}
+### [02 -- CURE ID Tables Script]{.underline}
 
 **Filename**: [02_CURE_ID_All_Tables.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/02_CURE_ID_All_Tables.sql)
 
@@ -119,219 +199,262 @@ b.       The concept ids here represent LOINC or SNOMED codes for standard
 
 **Description**: Creates CURE_ID tables from the generated CURE_ID cohort.
 
-**Dependencies**: This script depends on CURE_ID_Cohort.sql, and must be run after that script completes
+**Dependencies**: 
+- 01_CURE_ID_Cohort.sql
 
 **Steps**:
 
-1)      Load Person table
+1. Load Person table
 
-2)      Load Measurements table
+2. Load Measurements table
 
-3)      Load Drug Exposure table
+3. Load Drug Exposure table
 
-4)      Load Death table
+4. Load Death table
 
-5)      Load Observation data
+5. Load Observation data
 
-6)      Load Procedure Occurrence Table
+6. Load Procedure Occurrence Table
 
-7)      Load Condition Occurrence Table
+7. Load Condition Occurrence Table
 
-8)      Load Visit Occurrence table
+8. Load Visit Occurrence table
 
-9)      Load Device Exposure table
+9. Load Device Exposure tabledb
 
-#### [03 -- Replace Rare Conditions Script]{.underline}
+### [03 -- Replace Rare Conditions Script]{.underline}
 
 **Filename**: [03_CURE_ID_replace_rare_conditions_with_parents.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/03_CURE_ID_replace_rare_conditions_with_parents.sql)
 
 **Purpose**: Replace conditions occurring 10 or less times in the dataset with parent concepts that have at least 10 counts
 
-**Dependencies**: This script requires the cohort table built from 01_CURE_ID_Cohort.sql, and the data loaded into the Condition Occurrence table built from 02_CURE_ID_All_Tables.sql.
+**Description**: This script is run after scripts 01 and 02
+
+**Dependencies**:
+- 01_CURE_ID_Cohort.sql
+- 02_CURE_ID_All_Tables.sql
 
 **Steps**:
 
-1)      Condition roll up: concepts are mapped to their corresponding ancestor concept(s)
+1. Condition roll up: concepts are mapped to their corresponding ancestor concept(s)
 
-2)      Create table that counts the ancestor concepts for each original concept
+2. Create table that counts the ancestor concepts for each original concept
 
-3)      Create table that counts the original concepts
+3. Create table that counts the original concepts
 
-4)      Filter to only include conditions that have more than 10 counts
+4. Filter to only include conditions that have more than 10 counts
 
-5)      Get just the most specific condition in the ancestor-descendent hierarchy
+5. Get just the most specific condition in the ancestor-descendent hierarchy
 
-#### [04 -- Deidentified Data DDL Script]{.underline}
+### [04 -- Deidentified Data DDL Script]{.underline}
 
 **Filename**: [04_DE_ID_CDM_Table_ddl.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/04_DE_ID_CDM_Table_ddl.sql)
 
 **Purpose**: Generate the necessary tables for the de-identified version of the CURE ID Cohort
 
-**Dependencies**: None
+**Description**: This script will create tables in the Results schema and preface the table names with 'deident.' However, the preface can be set to whatever value you desire.
 
-**Customization**: By default this script will create tables in a schema titled "deident," however this can be set to whatever value you desire.
+**Dependencies**: None
 
 **Steps**:
 
-1)      Create the Person table
+1. Create the Person table
 
-2)      Create the Death table
+2. Create the Death table
 
-3)      Create the Visit Occurrence table
+3. Create the Visit Occurrence table
 
-4)      Create the Drug Exposure table
+4. Create the Drug Exposure table
 
-5)      Create the Device Exposure table
+5. Create the Device Exposure table
 
-6)      Create the Condition Occurrence table
+6. Create the Condition Occurrence table
 
-7)      Create the Measurement table
+7. Create the Measurement table
 
-8)      Create the Observation table
+8. Create the Observation table
 
-#### [05 -- Deidentification Script]{.underline}
+### [05 -- Deidentification Script]{.underline}
 
 **Filename**: [05_DE_ID_script.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/05_DE_ID_script.sql)
 
 **Purpose**: This script creates a copy of the Cohort and removes identifying characteristics to prepare the data for sharing with the VIRUS registry.
 
-**Dependencies**: This script requires the cohort table built from 01_CURE_ID_Cohort.sql, and the data loaded into all tables built from 02_CURE_ID_All_Tables.sql, rare conditions replace from 03_CURE_ID_replace_rare_conditions_with_parents.sql, and the de-identified OMOP CDM tables generated from 04_DE_ID_CDM_Table_ddl.sql.
+**Description**: Run this script to generate a deidentified copy of your target data. The following actions are performed:
+- Reassignment of Person IDs: Person IDs are regenerated sequentially from a sorted copy of the Person table. These new Person IDs are carried throughout the CDM to all tables that reference it.
 
-**Description**: Run this file to generate a deidentified copy of your target data. Insert your data into the OMOP tables, and de-identify person_id, and date fields using date.shift. (\*If a person is 90 years of age or older, assign a random age between 90-99 years.)
+- Date Shifting: Each person is assigned a random date shift value between -186 and +186 days. All dates for that person are then shifted shifted by that amount.
+     
+- Birthdays: After date shifting a person’s birthday, the day is then set to the first of the new birth month. If the person would be \> 89 years old then they are assigned a random birth year that would make them 90-99 years old.
+
+- Date Truncation: A user-defined Start and End date are used to exclude any date shifted data that falls outside of the target date range (e.g. procedures, conditions occurrences, etc.). Does not include Birthdates.
+
+- Removal of Other Identifiers: Other potentially identifying datapoints are removed from the dataset such as location_id, provider_id, and care_site_id
+
+**Dependencies**: 
+- 01_CURE_ID_Cohort.sql
+- 02_CURE_ID_All_Tables.sql
+- 03_CURE_ID_replace_rare_conditions_with_parents.sql
+- 04_DE_ID_CDM_Table_ddl.sql
 
 **Steps**:
 
-1)      Use find and replace to set source and target DB and Schema names
+1. Use find and replace to set source and target DB and Schema names
 
-2)      Load the OMOP Person table, and de-identify
+2. Load the OMOP Person table, and de-identify
 
-3)      Load the OMOP Visit Occurrence table, and de-identify
+3. Load the OMOP Visit Occurrence table, and de-identify
 
-4)      Load the OMOP Condition Occurrence table, and de-identify
+4. Load the OMOP Condition Occurrence table, and de-identify
 
-5)      Load the OMOP Procedure Occurrence table, and de-identify
+5. Load the OMOP Procedure Occurrence table, and de-identify
 
-6)      Load the OMOP Drug Exposure table, and de-identify
+6. Load the OMOP Drug Exposure table, and de-identify
 
-7)      Load the OMOP Observation table, and de-identify
+7. Load the OMOP Observation table, and de-identify
 
-8)      Load the OMOP Death table, and de-identify
+8. Load the OMOP Death table, and de-identify
 
-9)      Load the OMOP Device Exposure table, and de-identify
+9. Load the OMOP Device Exposure table, and de-identify
 
-10)   Load the OMOP Measurement table, and de-identify
+10. Load the OMOP Measurement table, and de-identify
 
-Reassignment of Person IDs:
-
-·         Person IDs are regenerated sequentially from a sorted copy of the Person table. These new Person IDs are carried throughout the CDM to all tables that reference it.
-
-Date Shifting:
-
-·         Each person is assigned a random date shift value between -186 and +186 days. All dates for that person are then shifted shifted by that amount.
-
-·         Birthdays: After date shifting a person's birthday, the day is then set to the first of the new birth month. If the person would be \> 89 years old then they are assigned a random birth year that would make them 90-99 years old.
-
-Date Truncation:
-
-·         A user-defined Start and End date are used to exclude any date shifted data that falls outside of the target date range (E.G. Procedures, conditions occurrences, etc. Does not include Birthdates).
-
-Removal of other identifiers:
-
-·         Other potentially identifying datapoints are removed from the dataset such as location_id, provider_id, and care_site_id
-
-#### [06 -- Quality Checks Script (optional)]{.underline}
+### [06 -- Quality Checks Script (optional)]{.underline}
 
 **Filename**: [06_DE_ID_Quality_Checks.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/06_DE_ID_Quality_Checks.sql)
 
-**Purpose**: This script checks basic metrics for each table in the deidentified dataset to ensure the previous scripts were successful. This does
+**Purpose**: This script checks basic metrics for each table in the deidentified dataset to ensure the previous scripts were successful.
 
 **Description**: This script runs a number of summary level quality checks for each table to audit basic data counts and date ranges.
 
-**Dependencies**: This script requires the populated deidentified OMOP tables generated from the sequence of running:
-
-01_CURE_ID_Cohort.sql,
-
-02_CURE_ID_All_Tables.sql,
-
-03_CURE_ID_replace_rare_conditions_with_parents.sql,
-
-04_DE_ID_CDM_Table_ddl.sql,
-
-05_DE_ID_script.sql
+**Dependencies**:
+- 01_CURE_ID_Cohort.sql
+- 02_CURE_ID_All_Tables.sql
+- 03_CURE_ID_replace_rare_conditions_with_parents.sql
+- 04_DE_ID_CDM_Table_ddl.sql
+- 05_DE_ID_script.sql
 
 **Steps**:
 
-1)      Count distinct person_ids and find the maximum and minimum birthdates in the OMOP Person table.
+1. Count distinct person_ids and find the maximum and minimum birthdates in the OMOP Person table.
 
-2)      Count distinct person_ids in the OMOP Death table.
+2. Count distinct person_ids in the OMOP Death table.
 
-3)      Count distinct person_ids, count number of records per observation_concept_id, and find the maximum and minimum observation dates for all records in the OMOP Observation table.
+3. Count distinct person_ids, count number of records per observation_concept_id, and find the maximum and minimum observation dates for all records in the OMOP Observation table.
 
-4)      Count distinct person_ids, count number of records per procedure_concept_id, and find the maximum and minimum procedure dates for all records in the OMOP Procedure Occurrence table.
+4. Count distinct person_ids, count number of records per procedure_concept_id, and find the maximum and minimum procedure dates for all records in the OMOP Procedure Occurrence table.
 
-5)      Count distinct person_ids, count number of records per condition_concept_id, and find the maximum and minimum condition dates for all records in the OMOP Condition Occurrence table.
+5. Count distinct person_ids, count number of records per condition_concept_id, and find the maximum and minimum condition dates for all records in the OMOP Condition Occurrence table.
 
-6)      Count distinct person_ids, count number of records per measurement_concept_id, and find the maximum and minimum measurement dates for all records in the OMOP Measurement table.
+6. Count distinct person_ids, count number of records per measurement_concept_id, and find the maximum and minimum measurement dates for all records in the OMOP Measurement table.
 
-7)      Count distinct person_ids, count number of records per device_concept_id, and find the maximum and minimum device exposure dates for all records in the OMOP Device Exposure table.
+7. Count distinct person_ids, count number of records per device_concept_id, and find the maximum and minimum device exposure dates for all records in the OMOP Device Exposure table.
 
-8)      Count distinct person_ids, count number of records per drug_concept_id, and find the maximum and minimum drug exposure dates for all records in the OMOP Drug Exposure table.
+8. Count distinct person_ids, count number of records per drug_concept_id, and find the maximum and minimum drug exposure dates for all records in the OMOP Drug Exposure table.
 
-#### [07 -- Cohort Profile Scripts]{.underline}
+### [07 -- Cohort Profile Scripts]{.underline}
 
 **Dependencies**: These scripts require the populated deidentified OMOP tables generated from the sequence of running scripts 1-5:
 
-01_CURE_ID_Cohort.sql,
+- 01_CURE_ID_Cohort.sql
+- 02_CURE_ID_All_Tables.sql
+- 03_CURE_ID_replace_rare_conditions_with_parents.sql
+- 04_DE_ID_CDM_Table_ddl.sql
+- 05_DE_ID_script.sql
 
-02_CURE_ID_All_Tables.sql,
+    ##### 07-A – Condition Profile
 
-03_CURE_ID_replace_rare_conditions_with_parents.sql,
+    **Filename**: 07_A_condition_profile.sql
 
-04_DE_ID_CDM_Table_ddl.sql,
+    **Purpose**: Generate a profile of condition prevalence in the final cohort.
 
-05_DE_ID_script.sql
+    **Description**: Condition counts are calculated per patient and are aggregated by parent concepts for each condition concept present in the final OMOP Condition Occurrence table.
+    
+    ##### 07-B – Measurement Profile
 
-07-A -- Condition Profile
+    **Filename**: 07_B_measurement_profile.sql
 
-**Filename**: [07_A_condition_profile.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/07_A_condition_profile.sql)
+    **Purpose**: Generate a profile of measurement prevalence in the final cohort.
 
-**Purpose**: Generate a profile of condition prevalence in the final cohort.
+    **Description**: Measurement counts are calculated per patient and are aggregated by parent concepts for each measurement concept present in the final OMOP Measurement table.
 
-**Description**: Condition counts are calculated per patient and are aggregated by parent concepts for each condition concept present in the final OMOP Condition Occurrence table.
+    ##### 07-C – Drug Exposure Profile
 
-07-B -- Measurement Profile
+    **Filename**: 07_C_drug_exposure_profile.sql
 
-**Filename**: [07_B_measurement_profile.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/07_B_measurement_profile.sql)
+    **Purpose**: Generate a profile of drug prevalence in the final cohort.
 
-**Purpose**: Generate a profile of measurement prevalence in the final cohort.
+    **Description**: Drug counts are calculated per patient and are aggregated by ingredient for each drug concept present in the final OMOP Drug Exposure table.
 
-**Description**: Measurement counts are calculated per patient and are aggregated by parent concepts for each measurement concept present in the final OMOP Measurement table.
+    ##### 07-D – Unmapped Drugs Profile
 
-07-C -- Drug Exposure Profile
+    **Filename**: 07_D_review_unmapped_drugs.sql
 
-**Filename**: [07_C_drug_exposure_profile.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/07_C_drug_exposure_profile.sql)
+    **Purpose**: Generate a profile of drugs that are not mapped to drug_concept_ids in the final cohort.
 
-**Purpose**: Generate a profile of drug prevalence in the final cohort.
+    **Description**: This file filters drugs that were unsuccessfully mapped to a drug_concept_id when running the 02_CURE_ID_All_Tables.sql script. Drug source values for which the drug_concept_id is “0” and have at least 20 instances in the final cohort are aggregated for manual review.
+    \*\* Drug source values can contain PHI. Please review the output for PHI before sharing.
 
-**Description**: Drug counts are calculated per patient and are aggregated by ingredient for each drug concept present in the final OMOP Drug Exposure table.
+    ##### 07-E – Device Profile
 
-07-D -- Unmapped Drugs Profile
+    **Filename**: 07_E_device_profile.sql
 
-**Filename**: [07_D_review_unmapped_drugs.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/07_D_review_unmapped_drugs.sql)
+    **Purpose**: Generate a profile of device prevalence in the final cohort.
 
-**Purpose**: Generate a profile of drugs that are not mapped to drug_concept_ids in the final cohort.
+    **Description**: Device counts are calculated per patient and are aggregated by parent concepts for each device concept present in the final OMOP Device Exposure table.
 
-**Description**: This file filters drugs that were unsuccessfully mapped to a drug_concept_id when running the 02_CURE_ID_All_Tables.sql script. Drug source values for which the drug_concept_id is "0" and have at least 20 instances in the final cohort are aggregated for manual review.
 
-\*\* Drug source values can contain PHI. Please review the output for PHI before sharing.
 
-07-E -- Device Profile
 
-**Filename**: [07_E_device_profile.sql](https://github.com/OHDSI/CureIdRegistry/blob/main/Cohort%20curation%20scripts/07_E_device_profile.sql)
+## CURE ID Profile Scripts -- Output & Interpretation
 
-**Purpose**: Generate a profile of device prevalence in the final cohort.
+This section provides synthetic examples of the output generated from the CURE ID person measurement drug exposure and device profile SQL scripts as well as examples of how to interpret the output from each script.
 
-**Description**: Device counts are calculated per patient and are aggregated by parent concepts for each device concept present in the final OMOP Device Exposure table.
+### 07_A_condition_profile.sql
+
+Generates a table showing condition prevalence in cohort by individual condition concept.
+
+Example Interpretation
+
+In the highlighted row, the table shows that 6499 patients in the cohort have a recorded diagnosis of hypertension, representing 58% of the total cohort.
+
+![Profile_script_7A](images/Profile_script_7A.png)
+
+### 07_B_measurement_profile.sql
+
+Generates a table which includes the measurement concepts included in the cohort and their names.
+
+Example Interpretation
+
+The highlighted row shows the distribution of the number of times heart rate was measured per patient in the cohort. 25% of the patients had 17 heart rate measurements or less. 50% of patients had at least 34 heart rate measurements recorded. 75% of patients had at most, 72 heart rate measurements recorded. 95% of patients had at most, 398 heart rate measurements recorded. The four columns can also be interpreted as the median for the bottom 50% (percentile_25), overall median (median), median for the top 50% (percentile_75), and the median for the top 10% (percentile_95) -- in terms of how many times the measurement was taken for each patient in the cohort.
+
+
+![Profile_script_7B](images/Profile_script_7B.png)
+
+### 07_C_drug_exposure_profile.sql
+
+Generates a table of all drugs given in the cohort.
+
+Example Interpretation
+
+The highlighted row shows that acetaminophen was administered to 7,937 total patients which represents 68% of the patients in the cohort. Acetaminophen was administered an average of 2 times per patient with the highest recorded value of 26 administrations for a single patient.\
+It is important to note that these are *ingredients* - which is why sodium chloride is the most frequent "drug" because most IV drugs contain sodium chloride as an ingredient.
+
+![Profile_script_7C](images/Profile_script_7C.png)
+
+
+### 07_E_device_profile.sql
+
+Generates a table which includes the device concepts included in the cohort and their counts.
+
+Example Interpretation
+
+The highlighted row shows that an oxygen nasal cannula device was used for 9,238 patients in the cohort. That patients count represents 44% of the total cohort. Use of this device was recorded an average of 225.3 times per patient, with a maximum of 7,239 recordings for a single patient, when counting all flowsheet entries.
+
+![Profile_script_7E](images/Profile_script_7E.png)
+
+
+
 
 ## OMOP Table and Field Basics
 
@@ -346,7 +469,7 @@ For the tables of the main domains of the CDM it is imperative that concepts use
 Variable names across all tables follow one convention:
 
 |                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-|------------|------------------------------------------------------------|
+|----------------|--------------------------------------------------------|
 | **Notation**        | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | \_SOURCE_VALUE      | Verbatim information from the source data, typically used in ETL to map to CONCEPT_ID, and not to be used by any standard analytics. For example, CONDITION_SOURCE_VALUE = '787.02' was the ICD-9 code captured as a diagnosis from the administrative claim.                                                                                                                                                                                     |
 | \_ID                | Unique identifiers for key entities, which can serve as foreign keys to establish relationships across entities. For example, PERSON_ID uniquely identifies each individual. VISIT_OCCURRENCE_ID uniquely identifies a PERSON encounter at a point of care.                                                                                                                                                                                       |
@@ -362,11 +485,65 @@ For more information, see:
 
 [Clinical Data Tables](https://ohdsi.github.io/CommonDataModel/cdm53.html#Clinical_Data_Tables) 
 
+# Cure ID Concept Mapping Support
+
+![](images/CureID_Concept_Mapping_Process.png)
+
+#### Collaborative OMOP Concept Mapping Process
+
+1.  CureID clinical informaticists work with each site to manually map internal concepts to OMOP concepts outlined for capture in the project plan.
+
+2.  The combined concepts from all sites are maintained as a single, updated concept set using the OHDSI ATLAS open-source tool.
+
+3.  All concepts currently identified by the work between CureID staff and each site, and all corresponding descendant concepts are exported from ATLAS as .json or .csv files for use in cohort creation, profiling, and clinical registry submission.
+
 # Identifying Oxygen Devices in Epic/Clarity
 
 [Identifying Oxygen Devices Flowsheet Measures to Map to OMOP Concepts](https://userweb.epic.com/Thread/118440/Identifying-Oxygen-Devices-Flowsheet-Measures-to-Map-to-OMOP/)
 
-# Edge Tool Suite
+# Geocoding and Integrating SDOH Data  
+To link geocoded addresses to the Neighborhood Atlas for getting the Area Deprivation Index (ADI) for patients in a dataset, you will typically follow these steps:
+
+1. Prepare Your Dataset
+Patient Data: Ensure you have a dataset of patients with addresses. This data should be anonymized to protect patient privacy.
+Geocoding: Each address needs to be geocoded. Geocoding is the process of converting addresses into geographic coordinates (latitude and longitude).
+2. Geocoding Addresses
+Use a Geocoding Service: Tools like Google Maps API, ArcGIS, or OpenStreetMap can be used to geocode addresses. This will give you the precise geographic location for each address.
+Accuracy Check: Ensure the geocoding is accurate. Incorrect geocoding can lead to wrong ADI assignments.
+3. Understanding the Neighborhood Atlas
+ADI Overview: The ADI is a measure developed by the Neighborhood Atlas. It provides a ranked and searchable list of neighborhoods according to their level of disadvantage.
+Data Format: Understand the format of the Neighborhood Atlas data. It typically includes geographical identifiers like census tracts.
+4. Linking Geocoded Data to the Neighborhood Atlas
+Match Coordinates with Census Tracts: Use the geographic coordinates to determine the corresponding census tract for each patient. This can be done using GIS software like ArcGIS or QGIS.
+Cross-Reference with ADI Data: Once you have the census tract for each patient, cross-reference these with the Neighborhood Atlas to find the ADI for each tract.
+5. Integrating ADI into Your Dataset
+Add ADI to Patient Records: For each patient, add the ADI corresponding to their census tract. This step integrates socioeconomic context into your patient data.
+
+### Geocoding
+
+The primary consideration for linking geospatial data like social determinants of health and environmental risk factors with patient data is protecting PHI when geocoding patient home address and location data. Do not use web-based API services for geocoding as they require patient addresses to be sent to an external server for batch geocoding.
+Geocoding will require software that can match patient addresses to the appropriate shapefiles to determine a precise location and output latitudinal/longitudinal coordinates. Two software solutions for geocoding include:
+- Use ESRI ArcGIS or a similar program that can perform geocoding locally and has all appropriate shapefiles downloaded. This software is expensive, but many institutions have a license already in place.
+- Install geocoding software (ex: open-source, Degauss geocoder: https://www.degauss.org/geocoder) locally via manual installation or by installing a docker container.
+
+### Area Deprivation Index
+
+The Area Deprivation Index (ADI) is based on a measure created by the Health Resources & Services Administration (HRSA) over three decades ago, and has since been refined, adapted, and validated to the Census block group neighborhood level by Amy Kind, MD, PhD and her research team at the University of Wisconsin-Madison. It allows for rankings of neighborhoods by socioeconomic disadvantage in a region of interest (e.g., at the state or national level). It includes factors for the theoretical domains of income, education, employment, and housing quality. It can be used to inform health delivery and policy, especially for the most disadvantaged neighborhood groups. "Neighborhood" is defined as a Census block group.  
+from: https://www.neighborhoodatlas.medicine.wisc.edu/
+
+### ADI as an OHDSI Concept
+
+ADI is not included as an explicit concept in any of the appropriate standard vocabularies. The OHDSI Vocabularies Team recommended that this information be included in the OMOP data as a custom concept in the Observation table. The workflow will be simply to add a line item to the concept mapping table for Area Deprivation Index like the following example:
+concept_id = 2000000999
+concept_code = NA
+concept_name = Area deprivation index
+domain = observation
+vocabulary = Custom
+is_standard = C
+include_descendents = False
+
+
+# OHDSI Tool Suite
 
 The Edge Tool Suite are a set of OHDSI tools that should be deployed by the site that provide value around the OMOP CDM. This work was funded by the CURE ID initiative <https://cure.ncats.io>
 
@@ -414,7 +591,7 @@ In tandem with Perseus, OHDSI HADES and OHDSI ATLAS are the two projects within 
 
 <https://github.com/OHDSI/Athena>
 
-#### Perseus and the ETL Process
+#### The ETL Process
 
 <https://github.com/OHDSI/Perseus>
 
@@ -440,27 +617,19 @@ In tandem with Perseus, OHDSI HADES and OHDSI ATLAS are the two projects within 
 
 <https://github.com/OHDSI/DataQualityDashboard>
 
-# Understanding Perseus
-
-![](images/Perseus%20Diagram.jpg)
-
-Perseus incorporates multiple open-source applications within OHDSI including White Rabbit, Rabbit in a Hat, and Usagi to help organizations perform ETL
-
-(Diagram credit: [Lee Evans/LTS Computing LLC](http://www.ltscomputingllc.com/))
-
-For further explanation check [here](https://youtu.be/HhQ9x3bsv4o?t=2264)
-
 # Best Practices
 
 Data Quality Dos and Don'ts
 
 -   Do install the Data Quality Dashboard early on in the process.
 
--   Don't include source values in your export.- they might include PHI.
+-   Don't include source values in your export - they might include PHI.
 
 -   Don't forget to check GitHub for the most recent version of the script before you run it.
 
 -   Don't send your data to the coordinating center until the tech team has a chance to review it with you in a live session.
+
+-   Duplicated results have been reported at some sites when running script 02_CURE_ID_ALL_Tables.sql. However, at this time no root cause has been found. There is some belief that adding DISTINCT to the various SELECT statements could resolve the issue, while there is some concern over the latest updates to script 00_CURE_ID_create_concept_table.sql as it has standard concepts as well as standard descendants. Be sure to review your data carefully and report any signs of duplication so that it can be investigated.
 
 # Manuscripts
 
@@ -517,5 +686,3 @@ Data Quality Dos and Don'ts
 [OHDSI/Perseus GitHub site](https://github.com/OHDSI/Perseus) OHDSI/Perseus on GitHub
 
 [How to develop capacity for observational research within a health system](https://www.ohdsi.org/2022showcase-79/) Presentation on building capacity from 2022 OHDSI Collaborator Showcase
-
-# 

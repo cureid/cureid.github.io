@@ -176,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 24, 2024</p>
+      <p class="date-modified">June 25, 2024</p>
     </div>
   </div>
     
@@ -238,17 +238,16 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 <li>Site Completes CURE ID Manual OMOP Data Mapping Template</li>
 <li>The technical team reviews steps for performing ETL process by walking through GitHub scripts</li>
-<li>Meetings with JHU software contractors arranged, if needed</li>
+<li>Meetings with OHDI experts and software contractors arranged, if needed</li>
 <li>Site confirms that they are using most recent GitHub scripts before proceeding</li>
-<li>Data Quality Dashboard Run</li>
-<li>JSON and script output sent to Danielle Boyce</li>
-<li>DQD and concept counts approved or issues identified and reviewed with technical team</li>
-<li>DQD and concept counts re-run and approved by JHU technical team</li>
+<li>Data Quality Dashboard (DQD) and profile scripts run, output sent to technical team</li>
+<li>Data quality approved or issues identified and reviewed with technical team, re-run until resolved</li>
 <li>Run CURE ID scripts (see OMOP Cohort Creation and De-identification Guide)</li>
-<li>De-identified data exported to CSV file</li>
-<li>JHU/C-Path technical team reviews CSV files before transfer</li>
+<li>De-identified data exported to CSV files</li>
+<li>Pre-Export Checklist and naming convention document instructions followed</li>
+<li>Technical team reviews CSV files in live meeting before transfer</li>
 <li>Any caveats in the data documented in Data Export Cover Sheet</li>
-<li>Data transfer arrangements made by contacting Smitty Heavner</li>
+<li>Data transfer arrangements made by contacting C-Path</li>
 </ol>
 </section>
 <section id="omop-extract-transform-and-load-guide" class="level2">
@@ -257,7 +256,7 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="ohdsi-etl-resources"><u>OHDSI ETL Resources</u></h3>
 <ul>
 <li><a href="https://www.ohdsi.org/web/wiki/doku.php?id=documentation:etl_best_practices">OHDSI Wiki: ETL Creation Best Practices</a></li>
-<li><a href="Book of OHDSI - Ch.6 Extract Transform Load">Book of OHDSI (Ch. 6): Extract Transform Load</a></li>
+<li><a href="https://ohdsi.github.io/TheBookOfOhdsi/ExtractTransformLoad.html">The Book of OHDSI, Chapter 6</a></li>
 <li><a href="https://academy.ehden.eu/enrol/index.php?id=4">EHDEN Academy: OMOP CDM and Standardised Vocabularies</a></li>
 <li><a href="https://academy.ehden.eu/course/view.php?id=7">EHDEN Academy: Extract, Transform and Load</a></li>
 <li><a href="https://academy.ehden.eu/enrol/index.php?id=18">EHDEN Academy: Introduction to Usagi &amp; Code Mappings for an ETL</a></li>
@@ -306,7 +305,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p><strong>OMOPify your data!</strong></p>
 <ol type="a">
 <li>Determine the technology and software used or approved at your site for data storage, querying, and transfer. Determine the tools and technologies that team members and internal staff have expertise in.</li>
-<li>Generate the OMOP DDLs
+<li>Generate the OMOP DDLs. DDL (Data Definition Language) is a set of SQL commands used to define the structure of a database, including the creation, alteration, and deletion of tables and other database objects. In the context of the OMOP Common Data Model, generating DDLs involves creating the necessary SQL scripts to establish the standardized schema, ensuring that all data conform to the specified format and relationships within the OMOP CDM.
 <ol type="i">
 <li>Using R: https://github.com/OHDSI/CommonDataModel</li>
 <li>Using SQL: https://github.com/OHDSI/CommonDataModel/tree/v5.4.0/inst/ddl/5.4</li>

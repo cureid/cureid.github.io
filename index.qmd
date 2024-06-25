@@ -58,24 +58,23 @@ The repository containing the code and concept sets can be accessed at [OHDSI/Cu
     -   [Extract, Transform and Load (ehden.eu)](https://academy.ehden.eu/course/view.php?id=7)
 5.  Site Completes CURE ID Manual OMOP Data Mapping Template
 6.  The technical team reviews steps for performing ETL process by walking through GitHub scripts
-7.  Meetings with JHU software contractors arranged, if needed
+7.  Meetings with OHDI experts and software contractors arranged, if needed
 8.  Site confirms that they are using most recent GitHub scripts before proceeding
-9.  Data Quality Dashboard Run
-10. JSON and script output sent to Danielle Boyce
-11. DQD and concept counts approved or issues identified and reviewed with technical team
-12. DQD and concept counts re-run and approved by JHU technical team
-13. Run CURE ID scripts (see OMOP Cohort Creation and De-identification Guide)
-14. De-identified data exported to CSV file
-15. JHU/C-Path technical team reviews CSV files before transfer
-16. Any caveats in the data documented in Data Export Cover Sheet
-17. Data transfer arrangements made by contacting Smitty Heavner
+9.  Data Quality Dashboard (DQD) and profile scripts run, output sent to technical team
+10. Data quality approved or issues identified and reviewed with technical team, re-run until resolved
+11. Run CURE ID scripts (see OMOP Cohort Creation and De-identification Guide)
+12. De-identified data exported to CSV files
+13. Pre-Export Checklist and naming convention document instructions followed
+14. Technical team reviews CSV files in live meeting before transfer
+15. Any caveats in the data documented in Data Export Cover Sheet
+16. Data transfer arrangements made by contacting C-Path
 
 ## OMOP Extract, Transform, and Load Guide
 
 ### [OHDSI ETL Resources]{.underline}
 
 -   [OHDSI Wiki: ETL Creation Best Practices](https://www.ohdsi.org/web/wiki/doku.php?id=documentation:etl_best_practices)
--   [Book of OHDSI (Ch. 6): Extract Transform Load](Book%20of%20OHDSI%20-%20Ch.6%20Extract%20Transform%20Load)
+-   [The Book of OHDSI, Chapter 6](https://ohdsi.github.io/TheBookOfOhdsi/ExtractTransformLoad.html)
 -   [EHDEN Academy: OMOP CDM and Standardised Vocabularies](https://academy.ehden.eu/enrol/index.php?id=4)
 -   [EHDEN Academy: Extract, Transform and Load](https://academy.ehden.eu/course/view.php?id=7)
 -   [EHDEN Academy: Introduction to Usagi & Code Mappings for an ETL](https://academy.ehden.eu/enrol/index.php?id=18)
@@ -114,7 +113,7 @@ The repository containing the code and concept sets can be accessed at [OHDSI/Cu
 4.  **OMOPify your data!**
 
     a.  Determine the technology and software used or approved at your site for data storage, querying, and transfer. Determine the tools and technologies that team members and internal staff have expertise in.
-    b.  Generate the OMOP DDLs
+    b.  Generate the OMOP DDLs. DDL (Data Definition Language) is a set of SQL commands used to define the structure of a database, including the creation, alteration, and deletion of tables and other database objects. In the context of the OMOP Common Data Model, generating DDLs involves creating the necessary SQL scripts to establish the standardized schema, ensuring that all data conform to the specified format and relationships within the OMOP CDM.
         i.  Using R: https://github.com/OHDSI/CommonDataModel
         ii. Using SQL: https://github.com/OHDSI/CommonDataModel/tree/v5.4.0/inst/ddl/5.4
     c.  Implement the ETL.

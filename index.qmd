@@ -133,13 +133,13 @@ The CURE ID support team is here to help you. We also encourage you to connect w
 
 ### [Places to Connect]{.underline}
 
--   OHDSI.org: https://www.ohdsi.org/
+-   OHDSI.org: <https://www.ohdsi.org/>
 
--   OHDSI Wiki: https://www.ohdsi.org/web/wiki/doku.php
+-   OHDSI Wiki: <https://www.ohdsi.org/web/wiki/doku.php>
 
--   OHDSI Forums: https://forums.ohdsi.org/
+-   OHDSI Forums: <https://forums.ohdsi.org/>
 
--   OHDSI Workgroups: https://www.ohdsi.org/workgroups/
+-   OHDSI Workgroups: <https://www.ohdsi.org/workgroups/>
 
 ## OMOP Cohort Creation and De-identification Guide
 

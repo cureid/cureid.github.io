@@ -22,7 +22,19 @@ A common data model (CDM) allows multiple health care systems with their individ
 
 #### What is an ETL?
 
-ETL stands for Extract, Transform, and Load. Essentially this is the process of mapping data from one system to another. Please see \[The Book of OHDSI, Chapter 6\] (https://ohdsi.github.io/TheBookOfOhdsi/ExtractTransformLoad.html).
+ETL stands for Extract, Transform, and Load. \[The Book of OHDSI, Chapter 6\] (https://ohdsi.github.io/TheBookOfOhdsi/ExtractTransformLoad.html) states:
+
+"In order to get from the native/raw data to the OMOP Common Data Model (CDM) we have to create an extract, transform, and load (ETL) process. This process should restructure the data to the CDM, and add mappings to the Standardized Vocabularies, and is typically implemented as a set of automated scripts, for example SQL scripts. It is important that this ETL process is repeatable, so that it can be rerun whenever the source data is refreshed.
+
+Creating an ETL is usually a large undertaking. Over the years, we have developed best practices, consisting of four major steps:
+
+1.  Data experts and CDM experts together design the ETL.
+
+2.  People with medical knowledge create the code mappings.
+
+3.  A technical person implements the ETL.
+
+4.  All are involved in quality control."
 
 ## Getting started
 
@@ -45,7 +57,7 @@ The repository containing the code and concept sets can be accessed at [OHDSI/Cu
     -   [OMOP CDM and Standardised Vocabularies (ehden.eu)](https://academy.ehden.eu/course/view.php?id=4)
     -   [Extract, Transform and Load (ehden.eu)](https://academy.ehden.eu/course/view.php?id=7)
 5.  Site Completes CURE ID Manual OMOP Data Mapping Template
-6.  JHU reviews steps for performing ETL process by walking through GitHub scripts
+6.  The technical team reviews steps for performing ETL process by walking through GitHub scripts
 7.  Meetings with JHU software contractors arranged, if needed
 8.  Site confirms that they are using most recent GitHub scripts before proceeding
 9.  Data Quality Dashboard Run
